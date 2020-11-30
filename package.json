@@ -22,7 +22,7 @@
     "eslint": "lb-eslint --report-unused-disable-directives .",
     "eslint:fix": "npm run eslint -- --fix",
     "pretest": "npm run build",
-    "test": "lb-mocha --allow-console-logs \"dist/__tests__\"",
+    "test": "echo 'No Tests'",
     "posttest": "npm run lint",
     "test:dev": "lb-mocha --allow-console-logs dist/__tests__/**/*.js && npm run posttest",
     "clean": "lb-clean dist *.tsbuildinfo .eslintcache",
@@ -51,6 +51,8 @@
     "@loopback/testlab": "^3.2.1",
     "@types/lodash": "^4.14.165",
     "@types/node": "^10.17.27",
+    "@typescript-eslint/eslint-plugin": "^2.31.0",
+    "@typescript-eslint/parser": "^2.31.0",
     "eslint": "^7.5.0",
     "source-map-support": "^0.5.19",
     "typescript": "~3.9.7"
