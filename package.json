@@ -56,5 +56,8 @@
     "eslint": "^7.5.0",
     "source-map-support": "^0.5.19",
     "typescript": "~3.9.7"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   }
 }
