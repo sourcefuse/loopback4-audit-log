@@ -11,6 +11,10 @@
   "engines": {
     "node": ">=10.16"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sourcefuse/loopback4-audit-log"
+  },
   "scripts": {
     "build": "npm run clean && lb-tsc",
     "build:watch": "lb-tsc --watch",
@@ -27,9 +31,6 @@
     "test:dev": "lb-mocha --allow-console-logs dist/__tests__/**/*.js && npm run posttest",
     "clean": "lb-clean dist *.tsbuildinfo .eslintcache",
     "prepublishOnly": "npm run build && npm run lint"
-  },
-  "repository": {
-    "type": "git"
   },
   "author": "",
   "license": "",

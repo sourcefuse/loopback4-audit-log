@@ -30,6 +30,9 @@ export function AuditRepositoryMixin<
       if (this.getCurrentUser) {
         const user = await this.getCurrentUser();
         const auditRepo = await this.getAuditLogRepository();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const extras: any = Object.assign({}, opts);
+        delete extras.actionKey;
         const audit = new AuditLog({
           actedAt: new Date(),
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -39,6 +42,7 @@ export function AuditRepositoryMixin<
           entityId: created.getId(),
           actedOn: this.entityClass.modelName,
           actionKey: opts.actionKey,
+          ...extras,
         });
         auditRepo.create(audit).catch(() => {
           console.error(
@@ -58,6 +62,9 @@ export function AuditRepositoryMixin<
       if (this.getCurrentUser) {
         const user = await this.getCurrentUser();
         const auditRepo = await this.getAuditLogRepository();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const extras: any = Object.assign({}, opts);
+        delete extras.actionKey;
         const audits = created.map(
           data =>
             new AuditLog({
@@ -69,6 +76,7 @@ export function AuditRepositoryMixin<
               entityId: data.getId(),
               actedOn: this.entityClass.modelName,
               actionKey: opts.actionKey,
+              ...extras,
             }),
         );
         auditRepo.createAll(audits).catch(() => {
@@ -95,6 +103,9 @@ export function AuditRepositoryMixin<
       if (this.getCurrentUser) {
         const user = await this.getCurrentUser();
         const auditRepo = await this.getAuditLogRepository();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const extras: any = Object.assign({}, opts);
+        delete extras.actionKey;
         const audits = updated.map(
           data =>
             new AuditLog({
@@ -107,6 +118,7 @@ export function AuditRepositoryMixin<
               entityId: data.getId(),
               actedOn: this.entityClass.modelName,
               actionKey: opts.actionKey,
+              ...extras,
             }),
         );
         auditRepo.createAll(audits).catch(() => {
@@ -129,6 +141,9 @@ export function AuditRepositoryMixin<
       if (this.getCurrentUser) {
         const user = await this.getCurrentUser();
         const auditRepo = await this.getAuditLogRepository();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const extras: any = Object.assign({}, opts);
+        delete extras.actionKey;
         const audits = toDelete.map(
           data =>
             new AuditLog({
@@ -140,6 +155,7 @@ export function AuditRepositoryMixin<
               entityId: data.getId(),
               actedOn: this.entityClass.modelName,
               actionKey: opts.actionKey,
+              ...extras,
             }),
         );
         auditRepo.createAll(audits).catch(() => {
@@ -166,6 +182,9 @@ export function AuditRepositoryMixin<
       if (this.getCurrentUser) {
         const user = await this.getCurrentUser();
         const auditRepo = await this.getAuditLogRepository();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const extras: any = Object.assign({}, opts);
+        delete extras.actionKey;
         const auditLog = new AuditLog({
           actedAt: new Date(),
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -176,6 +195,7 @@ export function AuditRepositoryMixin<
           entityId: before.getId(),
           actedOn: this.entityClass.modelName,
           actionKey: opts.actionKey,
+          ...extras,
         });
 
         auditRepo.create(auditLog).catch(() => {
@@ -199,6 +219,9 @@ export function AuditRepositoryMixin<
       if (this.getCurrentUser) {
         const user = await this.getCurrentUser();
         const auditRepo = await this.getAuditLogRepository();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const extras: any = Object.assign({}, opts);
+        delete extras.actionKey;
         const auditLog = new AuditLog({
           actedAt: new Date(),
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -209,6 +232,7 @@ export function AuditRepositoryMixin<
           entityId: before.getId(),
           actedOn: this.entityClass.modelName,
           actionKey: opts.actionKey,
+          ...extras,
         });
 
         auditRepo.create(auditLog).catch(() => {
@@ -227,6 +251,9 @@ export function AuditRepositoryMixin<
       if (this.getCurrentUser) {
         const user = await this.getCurrentUser();
         const auditRepo = await this.getAuditLogRepository();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const extras: any = Object.assign({}, opts);
+        delete extras.actionKey;
         const auditLog = new AuditLog({
           actedAt: new Date(),
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -236,6 +263,7 @@ export function AuditRepositoryMixin<
           entityId: before.getId(),
           actedOn: this.entityClass.modelName,
           actionKey: opts.actionKey,
+          ...extras,
         });
 
         auditRepo.create(auditLog).catch(() => {

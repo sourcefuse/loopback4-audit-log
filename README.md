@@ -190,6 +190,8 @@ export class GroupRepository extends AuditRepositoryMixin<
 }
 ```
 
+You can pass any extra attributes to save into audit table using the `IAuditMixinOptions` parameter of mixin function.
+
 Make sure you provide `getCurrentUser` and `getAuditLogRepository` Getter functions in constructor.
 
 This will create all insert, update, delete audits for this model.
