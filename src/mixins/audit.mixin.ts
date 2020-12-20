@@ -24,6 +24,7 @@ export function AuditRepositoryMixin<
     getAuditLogRepository: () => Promise<AuditLogRepository>;
     getCurrentUser?: () => Promise<{id?: UserID}>;
 
+    /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
     // @ts-ignore
     async create(dataObject: DataObject<M>, options?: Options): Promise<M> {
       const created = await super.create(dataObject, options);
@@ -53,6 +54,7 @@ export function AuditRepositoryMixin<
       return created;
     }
 
+    /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
     // @ts-ignore
     async createAll(
       dataObjects: DataObject<M>[],
@@ -89,6 +91,7 @@ export function AuditRepositoryMixin<
       return created;
     }
 
+    /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
     // @ts-ignore
     async updateAll(
       dataObject: DataObject<M>,
@@ -132,6 +135,7 @@ export function AuditRepositoryMixin<
       return updatedCount;
     }
 
+    /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
     // @ts-ignore
     async deleteAll(where?: Where<M>, options?: Options): Promise<Count> {
       const toDelete = await this.find({where});
@@ -169,6 +173,7 @@ export function AuditRepositoryMixin<
       return deletedCount;
     }
 
+    /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
     // @ts-ignore
     async updateById(
       id: ID,
@@ -206,6 +211,7 @@ export function AuditRepositoryMixin<
       }
     }
 
+    /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
     // @ts-ignore
     async replaceById(
       id: ID,
@@ -243,6 +249,7 @@ export function AuditRepositoryMixin<
       }
     }
 
+    /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
     // @ts-ignore
     async deleteById(id: ID, options?: Options): Promise<void> {
       const before = await this.findById(id);
