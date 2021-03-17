@@ -12,7 +12,7 @@ export interface IAuditMixinOptions {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }
-interface AuditLogOption {
+export interface AuditLogOption {
   noAudit: boolean;
 }
 export declare type AuditOptions = Options & AuditLogOption;
