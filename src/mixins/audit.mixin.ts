@@ -4,14 +4,13 @@ import {
   DataObject,
   Entity,
   EntityCrudRepository,
-  Options,
   Where,
 } from '@loopback/repository';
 import {keyBy} from 'lodash';
 
 import {Action, AuditLog} from '../models';
 import {AuditLogRepository} from '../repositories';
-import {IAuditMixin, IAuditMixinOptions} from '../types';
+import {AuditOptions, IAuditMixin, IAuditMixinOptions} from '../types';
 
 export function AuditRepositoryMixin<
   M extends Entity,
@@ -26,9 +25,12 @@ export function AuditRepositoryMixin<
 
     /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
     // @ts-ignore
-    async create(dataObject: DataObject<M>, options?: Options): Promise<M> {
+    async create(
+      dataObject: DataObject<M>,
+      options?: AuditOptions,
+    ): Promise<M> {
       const created = await super.create(dataObject, options);
-      if (this.getCurrentUser) {
+      if (this.getCurrentUser && !options?.noAudit) {
         const user = await this.getCurrentUser();
         const auditRepo = await this.getAuditLogRepository();
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -58,10 +60,10 @@ export function AuditRepositoryMixin<
     // @ts-ignore
     async createAll(
       dataObjects: DataObject<M>[],
-      options?: Options,
+      options?: AuditOptions,
     ): Promise<M[]> {
       const created = await super.createAll(dataObjects, options);
-      if (this.getCurrentUser) {
+      if (this.getCurrentUser && !options?.noAudit) {
         const user = await this.getCurrentUser();
         const auditRepo = await this.getAuditLogRepository();
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -96,8 +98,11 @@ export function AuditRepositoryMixin<
     async updateAll(
       dataObject: DataObject<M>,
       where?: Where<M>,
-      options?: Options,
+      options?: AuditOptions,
     ): Promise<Count> {
+      if (options?.noAudit) {
+        return super.updateAll(dataObject, where, options);
+      }
       const toUpdate = await this.find({where});
       const beforeMap = keyBy(toUpdate, d => d.getId());
       const updatedCount = await super.updateAll(dataObject, where, options);
@@ -137,7 +142,10 @@ export function AuditRepositoryMixin<
 
     /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
     // @ts-ignore
-    async deleteAll(where?: Where<M>, options?: Options): Promise<Count> {
+    async deleteAll(where?: Where<M>, options?: AuditOptions): Promise<Count> {
+      if (options?.noAudit) {
+        return super.deleteAll(where, options);
+      }
       const toDelete = await this.find({where});
       const beforeMap = keyBy(toDelete, d => d.getId());
       const deletedCount = await super.deleteAll(where, options);
@@ -178,9 +186,18 @@ export function AuditRepositoryMixin<
     async updateById(
       id: ID,
       data: DataObject<M>,
-      options?: Options,
+      options?: AuditOptions,
     ): Promise<void> {
+      if (options?.noAudit) {
+        return super.updateById(id, data, options);
+      }
       const before = await this.findById(id);
+      // loopback repository internally calls updateAll so we don't want to create another log
+      if (options) {
+        options.noAudit = true;
+      } else {
+        options = {noAudit: true};
+      }
       await super.updateById(id, data, options);
       const after = await this.findById(id);
 
@@ -216,8 +233,11 @@ export function AuditRepositoryMixin<
     async replaceById(
       id: ID,
       data: DataObject<M>,
-      options?: Options,
+      options?: AuditOptions,
     ): Promise<void> {
+      if (options?.noAudit) {
+        return super.replaceById(id, data, options);
+      }
       const before = await this.findById(id);
       await super.replaceById(id, data, options);
       const after = await this.findById(id);
@@ -251,7 +271,10 @@ export function AuditRepositoryMixin<
 
     /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
     // @ts-ignore
-    async deleteById(id: ID, options?: Options): Promise<void> {
+    async deleteById(id: ID, options?: AuditOptions): Promise<void> {
+      if (options?.noAudit) {
+        return super.deleteById(id, options);
+      }
       const before = await this.findById(id);
       await super.deleteById(id, options);
 

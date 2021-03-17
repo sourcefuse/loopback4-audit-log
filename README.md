@@ -196,6 +196,12 @@ Make sure you provide `getCurrentUser` and `getAuditLogRepository` Getter functi
 
 This will create all insert, update, delete audits for this model.
 
+- Option to disable audit logging on specific functions by just passing `noAudit:true` flag with options
+
+```ts
+create(data, {noAudit: true});
+```
+
 ## Feedback
 
 If you've noticed a bug or have a question or have a feature request, [search the issue tracker](https://github.com/sourcefuse/loopback4-audit-log/issues) to see if someone else in the community has already created a ticket.
