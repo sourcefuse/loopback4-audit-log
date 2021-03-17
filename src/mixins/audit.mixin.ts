@@ -30,7 +30,7 @@ export function AuditRepositoryMixin<
       options?: AuditOptions,
     ): Promise<M> {
       const created = await super.create(dataObject, options);
-      if (this.getCurrentUser && !options.noAuditCreation) {
+      if (this.getCurrentUser && !options?.noAudit) {
         const user = await this.getCurrentUser();
         const auditRepo = await this.getAuditLogRepository();
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -63,7 +63,7 @@ export function AuditRepositoryMixin<
       options?: AuditOptions,
     ): Promise<M[]> {
       const created = await super.createAll(dataObjects, options);
-      if (this.getCurrentUser && !options.noAuditCreation) {
+      if (this.getCurrentUser && !options?.noAudit) {
         const user = await this.getCurrentUser();
         const auditRepo = await this.getAuditLogRepository();
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -100,7 +100,7 @@ export function AuditRepositoryMixin<
       where?: Where<M>,
       options?: AuditOptions,
     ): Promise<Count> {
-      if (options.noAuditCreation) {
+      if (options?.noAudit) {
         return super.updateAll(dataObject, where, options);
       }
       const toUpdate = await this.find({where});
@@ -143,7 +143,7 @@ export function AuditRepositoryMixin<
     /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
     // @ts-ignore
     async deleteAll(where?: Where<M>, options?: AuditOptions): Promise<Count> {
-      if (options.noAuditCreation) {
+      if (options?.noAudit) {
         return super.deleteAll(where, options);
       }
       const toDelete = await this.find({where});
@@ -188,12 +188,16 @@ export function AuditRepositoryMixin<
       data: DataObject<M>,
       options?: AuditOptions,
     ): Promise<void> {
-      if (options.noAuditCreation) {
+      if (options?.noAudit) {
         return super.updateById(id, data, options);
       }
       const before = await this.findById(id);
       // loopback repository internally calls updateAll so we don't want to create another log
-      options.noAuditCreation = true;
+      if (options) {
+        options.noAudit = true;
+      } else {
+        options = {noAudit: true};
+      }
       await super.updateById(id, data, options);
       const after = await this.findById(id);
 
@@ -231,7 +235,7 @@ export function AuditRepositoryMixin<
       data: DataObject<M>,
       options?: AuditOptions,
     ): Promise<void> {
-      if (options.noAuditCreation) {
+      if (options?.noAudit) {
         return super.replaceById(id, data, options);
       }
       const before = await this.findById(id);
@@ -268,7 +272,7 @@ export function AuditRepositoryMixin<
     /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
     // @ts-ignore
     async deleteById(id: ID, options?: AuditOptions): Promise<void> {
-      if (options.noAuditCreation) {
+      if (options?.noAudit) {
         return super.deleteById(id, options);
       }
       const before = await this.findById(id);

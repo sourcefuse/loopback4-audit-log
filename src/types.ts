@@ -1,7 +1,7 @@
 import {AuditLogRepository} from './repositories';
+import {Options} from '@loopback/repository';
 
 export const AuditDbSourceName = 'AuditDB';
-import {Options} from '@loopback/repository';
 export interface IAuditMixin<UserID> {
   getAuditLogRepository: () => Promise<AuditLogRepository>;
   getCurrentUser?: () => Promise<{id?: UserID}>;
@@ -13,6 +13,6 @@ export interface IAuditMixinOptions {
   [key: string]: any;
 }
 interface AuditLogOption {
-  noAuditCreation: boolean;
+  noAudit: boolean;
 }
 export declare type AuditOptions = Options & AuditLogOption;
