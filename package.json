@@ -30,7 +30,8 @@
     "posttest": "npm run lint",
     "test:dev": "lb-mocha --allow-console-logs dist/__tests__/**/*.js && npm run posttest",
     "clean": "lb-clean dist *.tsbuildinfo .eslintcache",
-    "prepublishOnly": "npm run build && npm run lint"
+    "prepublishOnly": "npm run build && npm run lint",
+    "prepare": "husky install"
   },
   "author": "",
   "license": "",
@@ -47,18 +48,47 @@
     "tslib": "^2.2.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
     "@loopback/build": "^6.4.0",
     "@loopback/eslint-config": "^10.2.0",
     "@loopback/testlab": "^3.4.0",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.0",
     "@types/lodash": "^4.14.165",
     "@types/node": "^10.17.59",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-customizable": "^6.3.0",
+    "cz-customizable-ghooks": "^2.0.0",
     "eslint": "^7.25.0",
+    "husky": "^7.0.1",
+    "semantic-release": "^17.4.4",
     "source-map-support": "^0.5.19",
     "typescript": "~4.2.4"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    }
+  },
+  "release": {
+    "branches": [
+      "master"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      "@semantic-release/changelog",
+      "@semantic-release/git"
+    ],
+    "repositoryUrl": "git@github.com:sourcefuse/loopback4-audit-log.git"
   }
 }

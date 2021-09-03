@@ -4,3 +4,5 @@ coverage/
 
 .eslintrc.js
 src/.eslintrc.js
+.cz-config.js
+commitlint.config.js

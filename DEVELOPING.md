@@ -10,6 +10,12 @@ Install the following extensions:
  - [eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
  - [prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
+## Setup Commit Hooks
+
+Run the following script to prepare husky after the first time install -
+
+`npm run prepare`
+
 ## Development workflow
 
 ### Visual Studio Code
