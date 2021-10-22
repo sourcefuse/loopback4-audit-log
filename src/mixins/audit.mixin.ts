@@ -39,7 +39,7 @@ export function AuditRepositoryMixin<
         const audit = new AuditLog({
           actedAt: new Date(),
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          actor: (user?.id as any).toString() ?? '0',
+          actor: (user?.id as any)?.toString() ?? '0',
           action: Action.INSERT_ONE,
           after: created.toJSON(),
           entityId: created.getId(),
