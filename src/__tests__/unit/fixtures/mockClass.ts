@@ -15,7 +15,8 @@ import {mockData, mockDataArray} from './mockData';
 import {MockModel} from './mockModel';
 
 export class MockClass
-  implements EntityCrudRepository<MockModel, string | undefined, {}> {
+  implements EntityCrudRepository<MockModel, string | undefined, {}>
+{
   entityClass: typeof Entity & {prototype: MockModel} = MockModel;
   inclusionResolvers: Map<string, InclusionResolver<MockModel, Entity>>;
 

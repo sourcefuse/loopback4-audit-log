@@ -17,7 +17,7 @@ export function AuditRepositoryMixin<
   ID,
   Relations extends object,
   UserID,
-  R extends MixinTarget<EntityCrudRepository<M, ID, Relations>>
+  R extends MixinTarget<EntityCrudRepository<M, ID, Relations>>,
 >(superClass: R, opts: IAuditMixinOptions) {
   class MixedRepository extends superClass implements IAuditMixin<UserID> {
     getAuditLogRepository: () => Promise<AuditLogRepository>;

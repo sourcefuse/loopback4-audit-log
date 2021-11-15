@@ -1,9 +1,9 @@
 import {Constructor, Getter} from '@loopback/core';
 import {DefaultCrudRepository} from '@loopback/repository';
+
+import {AuditRepositoryMixin, IAuditMixinOptions} from '../../../..';
 import {TestDataSource} from '../datasources/test.datasource';
 import {TestModel, TestModelRelations} from '../models/test.model';
-import {IAuthUser} from 'loopback4-authentication';
-import {AuditRepositoryMixin, IAuditMixinOptions} from '../../../..';
 import {TestAuditLogRepository} from './audit.repository';
 
 export const testAuditOpts: IAuditMixinOptions = {
@@ -25,7 +25,7 @@ export class TestRepository extends AuditRepositoryMixin<
 >(DefaultCrudRepository, testAuditOpts) {
   constructor(
     dataSource: TestDataSource,
-    public getCurrentUser: Getter<IAuthUser>,
+    public getCurrentUser: Getter<{name: string; id: string}>,
     public getAuditLogRepository: Getter<TestAuditLogRepository>,
   ) {
     super(TestModel, dataSource);

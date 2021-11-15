@@ -7,7 +7,8 @@ const config = {
 };
 export class TestDataSource
   extends juggler.DataSource
-  implements LifeCycleObserver {
+  implements LifeCycleObserver
+{
   static dataSourceName = 'test';
   static readonly defaultConfig = config;
 
