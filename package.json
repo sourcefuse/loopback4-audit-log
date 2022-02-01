@@ -44,7 +44,7 @@
   ],
   "dependencies": {
     "@loopback/boot": "^4.0.0",
-    "@loopback/core": "^3.0.0",
+    "@loopback/core": "^3.0.1",
     "lodash": "^4.17.21",
     "tslib": "^2.3.1"
   },
