@@ -5,6 +5,5 @@ module.exports = {
     '@typescript-eslint/interface-name-prefix': 'off',
     'no-prototype-builtins': 'off',
     '@typescript-eslint/ban-ts-ignore': 'off',
-    'checksVoidReturn': false,
   },
 };

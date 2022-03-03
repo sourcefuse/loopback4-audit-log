@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import {Constructor} from '@loopback/core';
+import {EntityCrudRepository} from '@loopback/repository';
 import {expect, sinon} from '@loopback/testlab';
 import {
   Action,
@@ -6,15 +8,14 @@ import {
   AuditRepositoryMixin,
   IAuditMixinOptions,
 } from '../..';
+import {consoleMessage} from '../acceptance/audit.mixin.acceptance';
 import {
   MockClass,
   mockClassMethodCall,
   resetMethodCalls,
 } from './fixtures/mockClass';
-import {MockModel} from './fixtures/mockModel';
-import {EntityCrudRepository} from '@loopback/repository';
 import {mockData, mockDataArray, resetMockData} from './fixtures/mockData';
-import {consoleMessage} from '../acceptance/audit.mixin.acceptance';
+import {MockModel} from './fixtures/mockModel';
 
 let auditData: AuditLog;
 let auditDataArray: AuditLog[];
