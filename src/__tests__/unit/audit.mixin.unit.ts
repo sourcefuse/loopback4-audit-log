@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import {Constructor} from '@loopback/core';
 import {EntityCrudRepository} from '@loopback/repository';
 import {expect, sinon} from '@loopback/testlab';

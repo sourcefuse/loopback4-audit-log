@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import {expect, sinon} from '@loopback/testlab';
 import {v4 as uuidv4} from 'uuid';
 import {Action} from '../..';
