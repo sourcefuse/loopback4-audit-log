@@ -32,7 +32,8 @@
     "clean": "lb-clean dist *.tsbuildinfo .eslintcache",
     "prepublishOnly": "npm run build && npm run lint",
     "prepare": "husky install",
-    "coverage": "lb-nyc npm run test"
+    "coverage": "lb-nyc npm run test",
+    "postinstall": "patch-package"
   },
   "author": "",
   "license": "",
@@ -68,9 +69,19 @@
     "eslint": "^8.12.0",
     "fs-extra": "^10.0.1",
     "husky": "^7.0.4",
+    "patch-package": "^6.4.7",
     "semantic-release": "^19.0.2",
     "source-map-support": "^0.5.21",
     "typescript": "~4.6.3"
+  },
+  "peerDependencies": {
+    "patch-package": "^6.4.7"
+  },
+  "overrides": {
+    "commitizen": {
+      "minimist": "^1.2.6",
+      "cz-conventional-changelog": "^3.3.0"
+    }
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
