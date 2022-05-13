@@ -47,7 +47,7 @@
     "@loopback/boot": "^4.1.2",
     "@loopback/core": "^3.1.2",
     "lodash": "^4.17.21",
-    "tslib": "^2.0.0"
+    "tslib": "^2.4.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",
