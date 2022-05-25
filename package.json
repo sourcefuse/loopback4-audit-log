@@ -55,7 +55,10 @@
     "@loopback/eslint-config": "^13.0.0",
     "@loopback/testlab": "^5.0.0",
     "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/commit-analyzer": "^9.0.2",
     "@semantic-release/git": "^10.0.1",
+    "@semantic-release/npm": "^9.0.1",
+    "@semantic-release/release-notes-generator": "^10.0.3",
     "@types/lodash": "^4.14.181",
     "@types/node": "^12.20.50",
     "@types/uuid": "^8.3.4",
@@ -93,10 +96,19 @@
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
-      "@semantic-release/npm",
-      "@semantic-release/github",
       "@semantic-release/changelog",
-      "@semantic-release/git"
+      "@semantic-release/npm",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "package.json",
+            "CHANGELOG.md"
+          ],
+          "message": "chore(release): ${nextRelease.version} semantic"
+        }
+      ],
+      "@semantic-release/github"
     ],
     "repositoryUrl": "git@github.com:sourcefuse/loopback4-audit-log.git"
   }
