@@ -1,4 +1,4 @@
-import {MixinTarget} from '@loopback/core';
+import {Constructor, MixinTarget} from '@loopback/core';
 import {
   Count,
   DataObject,
@@ -18,7 +18,10 @@ export function AuditRepositoryMixin<
   Relations extends object,
   UserID,
   R extends MixinTarget<EntityCrudRepository<M, ID, Relations>>,
->(superClass: R, opts: IAuditMixinOptions) {
+>(
+  superClass: R,
+  opts: IAuditMixinOptions,
+): R & Constructor<IAuditMixin<UserID>> {
   class MixedRepository extends superClass implements IAuditMixin<UserID> {
     getAuditLogRepository: () => Promise<AuditLogRepository>;
     getCurrentUser?: () => Promise<{id?: UserID}>;
