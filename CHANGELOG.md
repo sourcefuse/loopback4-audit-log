@@ -1,3 +1,5 @@
+## [3.1.4](https://github.com/sourcefuse/loopback4-audit-log/compare/v3.1.3...v3.1.4) (2022-10-31)
+
 ## [3.1.3](https://github.com/sourcefuse/loopback4-audit-log/compare/v3.1.2...v3.1.3) (2022-09-09)
 
 ## [3.1.2](https://github.com/sourcefuse/loopback4-audit-log/compare/v3.1.1...v3.1.2) (2022-06-24)
