@@ -1,3 +1,10 @@
+## [3.1.5](https://github.com/sourcefuse/loopback4-audit-log/compare/v3.1.4...v3.1.5) (2022-11-03)
+
+
+### Bug Fixes
+
+* **core:** reduce the updateById 3 DB calls to 2 ([#36](https://github.com/sourcefuse/loopback4-audit-log/issues/36)) ([f0ab446](https://github.com/sourcefuse/loopback4-audit-log/commit/f0ab4467cd952fbf686baf7005dc2079224ba087)), closes [#33](https://github.com/sourcefuse/loopback4-audit-log/issues/33) [#33](https://github.com/sourcefuse/loopback4-audit-log/issues/33)
+
 ## [3.1.4](https://github.com/sourcefuse/loopback4-audit-log/compare/v3.1.3...v3.1.4) (2022-10-31)
 
 ## [3.1.3](https://github.com/sourcefuse/loopback4-audit-log/compare/v3.1.2...v3.1.3) (2022-09-09)
