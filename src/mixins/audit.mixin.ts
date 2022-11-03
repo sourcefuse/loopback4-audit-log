@@ -6,7 +6,7 @@ import {
   EntityCrudRepository,
   Where,
 } from '@loopback/repository';
-import {keyBy} from 'lodash';
+import {keyBy, cloneDeep} from 'lodash';
 
 import {Action, AuditLog} from '../models';
 import {AuditLogRepository} from '../repositories';
@@ -202,7 +202,8 @@ export function AuditRepositoryMixin<
         options = {noAudit: true};
       }
       await super.updateById(id, data, options);
-      const after = await this.findById(id);
+      let after = cloneDeep(before);
+      after = Object.assign(after, data);
 
       if (this.getCurrentUser) {
         const user = await this.getCurrentUser();
