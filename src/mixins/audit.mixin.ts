@@ -202,7 +202,7 @@ export function AuditRepositoryMixin<
         options = {noAudit: true};
       }
       await super.updateById(id, data, options);
-      let after = cloneDeep(before); // lodash
+      let after = cloneDeep(before);
       after = Object.assign(after, data);
 
       if (this.getCurrentUser) {
