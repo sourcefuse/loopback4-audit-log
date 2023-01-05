@@ -43,7 +43,7 @@
     "!*/__tests__"
   ],
   "dependencies": {
-    "@loopback/boot": "^5.0.5",
+    "@loopback/boot": "^5.0.6",
     "@loopback/core": "^4.0.5",
     "lodash": "^4.17.21",
     "tslib": "^2.0.0"
