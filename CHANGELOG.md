@@ -1,3 +1,35 @@
+## Release [v3.2.0](https://github.com/sourcefuse/loopback4-audit-log/compare/v3.1.6..v3.2.0) January 10, 2023
+Welcome to the January 10, 2023 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
+
+  - [](https://github.com/sourcefuse/loopback4-audit-log/issues/-43) :- [chore(deps): loopback version update ](https://github.com/sourcefuse/loopback4-audit-log/commit/33ef560fabf796b6d31ce8a2deb9e888bf24200b) was commited on January 10, 2023 by [Surbhi Sharma](mailto:98279679+Surbhi-sharma1@users.noreply.github.com)
+    
+      - updated version of the lb4 dependencies to the latest.
+      
+      -  GH-43
+      
+  
+  - [](https://github.com/sourcefuse/loopback4-audit-log/issues/-39) :- [feat(chore): custom change log ](https://github.com/sourcefuse/loopback4-audit-log/commit/b8b9a8a8596c65998c5fcee0b7be7da85cc8b220) was commited on January 9, 2023 by [yeshamavani](mailto:83634146+yeshamavani@users.noreply.github.com)
+    
+      - * feat(chore): custom change log
+      
+      -  The change log will now have issues as well as commit for the change
+      
+      - this is customizable in the
+      
+      - md file
+      
+      -  GH-39
+      
+      - * feat(chore): now we will generate out custom changelog
+      
+      -  using git-release-notes npm package for this
+      
+      -  GH-39
+      
+  
+Clink on the above links to understand the changes in detail.
+  ___
+
 ## [3.1.6](https://github.com/sourcefuse/loopback4-audit-log/compare/v3.1.5...v3.1.6) (2022-12-05)
 
 ## [3.1.5](https://github.com/sourcefuse/loopback4-audit-log/compare/v3.1.4...v3.1.5) (2022-11-03)
