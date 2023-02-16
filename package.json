@@ -43,8 +43,8 @@
     "!*/__tests__"
   ],
   "dependencies": {
-    "@loopback/boot": "^5.0.7",
-    "@loopback/core": "^4.0.7",
+    "@loopback/boot": "^5.0.8",
+    "@loopback/core": "^4.0.8",
     "jsdom": "^20.0.3",
     "lodash": "^4.17.21",
     "tslib": "^2.0.0"
@@ -52,38 +52,41 @@
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",
     "@commitlint/config-conventional": "^16.2.1",
-    "@loopback/build": "^9.0.7",
-    "@loopback/eslint-config": "^13.0.7",
-    "@loopback/testlab": "^5.0.7",
+    "@loopback/build": "^9.0.8",
+    "@loopback/eslint-config": "^13.0.8",
+    "@loopback/testlab": "^5.0.8",
     "@semantic-release/commit-analyzer": "^9.0.2",
     "@semantic-release/git": "^10.0.1",
-    "@semantic-release/npm": "^9.0.1",
+    "@semantic-release/npm": "9.0.2",
     "@semantic-release/release-notes-generator": "^10.0.3",
     "@types/lodash": "^4.14.181",
     "@types/node": "^14.18.36",
     "@types/uuid": "^8.3.4",
-    "@typescript-eslint/eslint-plugin": "^5.44.0",
-    "@typescript-eslint/parser": "^5.44.0",
+    "@typescript-eslint/eslint-plugin": "^5.51.0",
+    "@typescript-eslint/parser": "^5.51.0",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
     "cz-customizable": "^6.3.0",
     "cz-customizable-ghooks": "^2.0.0",
-    "eslint": "^8.30.0",
+    "eslint": "^8.33.0",
     "fs-extra": "^10.1.0",
     "git-release-notes": "^5.0.0",
     "husky": "^7.0.4",
-    "semantic-release": "^19.0.3",
+    "semantic-release": "20.1.0",
     "simple-git": "^3.15.1",
     "source-map-support": "^0.5.21",
     "typescript": "~4.9.4"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "overrides": {
-    "publishConfig": {
-      "registry": "https://registry.npmjs.org/"
-    },
     "git-release-notes": {
       "ejs": "^3.1.8",
       "yargs": "^17.6.2"
+    },
+    "@semantic-release/npm": {
+      "npm": "^9.4.2"
     }
   },
   "config": {
