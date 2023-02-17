@@ -1,3 +1,31 @@
+## Release [v3.2.1](https://github.com/sourcefuse/loopback4-audit-log/compare/v3.2.0..v3.2.1) February 17, 2023
+Welcome to the February 17, 2023 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
+
+  - [Correct the changelog Format](https://github.com/sourcefuse/loopback4-audit-log/issues/48) :- [fix(chore): correct the changelog format ](https://github.com/sourcefuse/loopback4-audit-log/commit/3e3d492689e670707f01e909218e159a78d33778) was commited on February 17, 2023 by [yeshamavani](mailto:83634146+yeshamavani@users.noreply.github.com)
+    
+      - now issue description will be visible
+      
+      -  GH-48
+      
+  
+  - [Package Update - loopback4-audit-log](https://github.com/sourcefuse/loopback4-audit-log/issues/45) :- [fix(chore): remove all current vulnerability of loopback4-audit-log ](https://github.com/sourcefuse/loopback4-audit-log/commit/88435374115061a0562729a45dfc1b597866dba1) was commited on February 17, 2023 by [Sunny Tyagi](mailto:107617248+Tyagi-Sunny@users.noreply.github.com)
+    
+      - * fix(chore): remove all curent vulnerability of loopback4-audit-log
+      
+      -  remove all curent vulnerability of loopback4-audit-log
+      
+      -  GH-45
+      
+      - * chore(deps): loopback package update
+      
+      -  loopback package update
+      
+      -  GH-45
+      
+  
+Clink on the above links to understand the changes in detail.
+  ___
+
 ## Release [v3.2.0](https://github.com/sourcefuse/loopback4-audit-log/compare/v3.1.6..v3.2.0) January 10, 2023
 Welcome to the January 10, 2023 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
 
