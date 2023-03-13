@@ -1,3 +1,23 @@
+## Release [v3.2.2](https://github.com/sourcefuse/loopback4-audit-log/compare/v3.2.1..v3.2.2) March 13, 2023
+Welcome to the March 13, 2023 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
+
+  - [loopback version update](https://github.com/sourcefuse/loopback4-audit-log/issues/52) :- [chore(deps): loopback version update ](https://github.com/sourcefuse/loopback4-audit-log/commit/61a802203253499c8220602d43a0d0de77bbc8e4) was commited on March 13, 2023 by [Gautam Agarwal](mailto:108651274+gautam23-sf@users.noreply.github.com)
+    
+      - loopback version update
+      
+      -  GH-52
+      
+  
+  - [Stale Bot missing in the repository](https://github.com/sourcefuse/loopback4-audit-log/issues/50) :- [chore(chore): add github stale bot ](https://github.com/sourcefuse/loopback4-audit-log/commit/ca66df2e24876ab18e8bd0ab01438155469ad78e) was commited on February 27, 2023 by [yeshamavani](mailto:83634146+yeshamavani@users.noreply.github.com)
+    
+      - Added stale.yml file to configure stale options
+      
+      -  GH-50
+      
+  
+Clink on the above links to understand the changes in detail.
+  ___
+
 ## Release [v3.2.1](https://github.com/sourcefuse/loopback4-audit-log/compare/v3.2.0..v3.2.1) February 17, 2023
 Welcome to the February 17, 2023 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
 
