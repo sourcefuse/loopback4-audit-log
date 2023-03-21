@@ -12,11 +12,13 @@ import {Action, AuditLog} from '../models';
 import {AuditLogRepository} from '../repositories';
 import {AuditOptions, IAuditMixin, IAuditMixinOptions} from '../types';
 
+//sonarignore:start
 export function AuditRepositoryMixin<
   M extends Entity,
   ID,
   Relations extends object,
   UserID,
+  //sonarignore:end
   R extends MixinTarget<EntityCrudRepository<M, ID, Relations>>,
 >(
   superClass: R,
@@ -37,12 +39,12 @@ export function AuditRepositoryMixin<
         const user = await this.getCurrentUser();
         const auditRepo = await this.getAuditLogRepository();
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const extras: any = Object.assign({}, opts);
+        const extras: any = Object.assign({}, opts); //NOSONAR
         delete extras.actionKey;
         const audit = new AuditLog({
           actedAt: new Date(),
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          actor: (user?.id as any)?.toString() ?? '0',
+          actor: (user?.id as any)?.toString() ?? '0', //NOSONAR
           action: Action.INSERT_ONE,
           after: created.toJSON(),
           entityId: created.getId(),
@@ -50,10 +52,13 @@ export function AuditRepositoryMixin<
           actionKey: opts.actionKey,
           ...extras,
         });
+
         auditRepo.create(audit).catch(() => {
+          //sonarignore:start
           console.error(
             `Audit failed for data => ${JSON.stringify(audit.toJSON())}`,
           );
+          //sonarignore:end
         });
       }
       return created;
@@ -70,14 +75,14 @@ export function AuditRepositoryMixin<
         const user = await this.getCurrentUser();
         const auditRepo = await this.getAuditLogRepository();
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const extras: any = Object.assign({}, opts);
+        const extras: any = Object.assign({}, opts); //NOSONAR
         delete extras.actionKey;
         const audits = created.map(
           data =>
             new AuditLog({
               actedAt: new Date(),
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              actor: (user?.id as any).toString() ?? '0',
+              actor: (user?.id as any).toString() ?? '0', //NOSONAR
               action: Action.INSERT_MANY,
               after: data.toJSON(),
               entityId: data.getId(),
@@ -88,9 +93,11 @@ export function AuditRepositoryMixin<
         );
         auditRepo.createAll(audits).catch(() => {
           const auditsJson = audits.map(a => a.toJSON());
+          //sonarignore:start
           console.error(
             `Audit failed for data => ${JSON.stringify(auditsJson)}`,
           );
+          //sonarignore:end
         });
       }
       return created;
@@ -115,14 +122,14 @@ export function AuditRepositoryMixin<
         const user = await this.getCurrentUser();
         const auditRepo = await this.getAuditLogRepository();
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const extras: any = Object.assign({}, opts);
+        const extras: any = Object.assign({}, opts); //NOSONAR
         delete extras.actionKey;
         const audits = updated.map(
           data =>
             new AuditLog({
               actedAt: new Date(),
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              actor: (user?.id as any).toString() ?? '0',
+              actor: (user?.id as any).toString() ?? '0', //NOSONAR
               action: Action.UPDATE_MANY,
               before: (beforeMap[data.getId()] as Entity).toJSON(),
               after: data.toJSON(),
@@ -134,9 +141,11 @@ export function AuditRepositoryMixin<
         );
         auditRepo.createAll(audits).catch(() => {
           const auditsJson = audits.map(a => a.toJSON());
+          //sonarignore:start
           console.error(
             `Audit failed for data => ${JSON.stringify(auditsJson)}`,
           );
+          //sonarignore:end
         });
       }
 
@@ -157,14 +166,14 @@ export function AuditRepositoryMixin<
         const user = await this.getCurrentUser();
         const auditRepo = await this.getAuditLogRepository();
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const extras: any = Object.assign({}, opts);
+        const extras: any = Object.assign({}, opts); //NOSONAR
         delete extras.actionKey;
         const audits = toDelete.map(
           data =>
             new AuditLog({
               actedAt: new Date(),
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              actor: (user?.id as any).toString() ?? '0',
+              actor: (user?.id as any).toString() ?? '0', //NOSONAR
               action: Action.DELETE_MANY,
               before: (beforeMap[data.getId()] as Entity).toJSON(),
               entityId: data.getId(),
@@ -175,9 +184,11 @@ export function AuditRepositoryMixin<
         );
         auditRepo.createAll(audits).catch(() => {
           const auditsJson = audits.map(a => a.toJSON());
+          //sonarignore:start
           console.error(
             `Audit failed for data => ${JSON.stringify(auditsJson)}`,
           );
+          //sonarignore:end
         });
       }
 
@@ -209,12 +220,12 @@ export function AuditRepositoryMixin<
         const user = await this.getCurrentUser();
         const auditRepo = await this.getAuditLogRepository();
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const extras: any = Object.assign({}, opts);
+        const extras: any = Object.assign({}, opts); //NOSONAR
         delete extras.actionKey;
         const auditLog = new AuditLog({
           actedAt: new Date(),
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          actor: (user?.id as any).toString() ?? '0',
+          actor: (user?.id as any).toString() ?? '0', //NOSONAR
           action: Action.UPDATE_ONE,
           before: before.toJSON(),
           after: after.toJSON(),
@@ -225,9 +236,11 @@ export function AuditRepositoryMixin<
         });
 
         auditRepo.create(auditLog).catch(() => {
+          //sonarignore:start
           console.error(
             `Audit failed for data => ${JSON.stringify(auditLog.toJSON())}`,
           );
+          //sonarignore:end
         });
       }
     }
@@ -250,12 +263,12 @@ export function AuditRepositoryMixin<
         const user = await this.getCurrentUser();
         const auditRepo = await this.getAuditLogRepository();
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const extras: any = Object.assign({}, opts);
+        const extras: any = Object.assign({}, opts); //NOSONAR
         delete extras.actionKey;
         const auditLog = new AuditLog({
           actedAt: new Date(),
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          actor: (user?.id as any).toString() ?? '0',
+          actor: (user?.id as any).toString() ?? '0', //NOSONAR
           action: Action.UPDATE_ONE,
           before: before.toJSON(),
           after: after.toJSON(),
@@ -266,9 +279,11 @@ export function AuditRepositoryMixin<
         });
 
         auditRepo.create(auditLog).catch(() => {
+          //sonarignore:start
           console.error(
             `Audit failed for data => ${JSON.stringify(auditLog.toJSON())}`,
           );
+          //sonarignore:end
         });
       }
     }
@@ -286,12 +301,12 @@ export function AuditRepositoryMixin<
         const user = await this.getCurrentUser();
         const auditRepo = await this.getAuditLogRepository();
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const extras: any = Object.assign({}, opts);
+        const extras: any = Object.assign({}, opts); //NOSONAR
         delete extras.actionKey;
         const auditLog = new AuditLog({
           actedAt: new Date(),
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          actor: (user?.id as any).toString() ?? '0',
+          actor: (user?.id as any).toString() ?? '0', //NOSONAR
           action: Action.DELETE_ONE,
           before: before.toJSON(),
           entityId: before.getId(),
@@ -301,9 +316,11 @@ export function AuditRepositoryMixin<
         });
 
         auditRepo.create(auditLog).catch(() => {
+          //sonarignore:start
           console.error(
             `Audit failed for data => ${JSON.stringify(auditLog.toJSON())}`,
           );
+          //sonarignore:end
         });
       }
     }

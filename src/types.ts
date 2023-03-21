@@ -10,7 +10,7 @@ export interface IAuditMixin<UserID> {
 export interface IAuditMixinOptions {
   actionKey: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [key: string]: any;
+  [key: string]: any; //NOSONAR
 }
 export interface AuditLogOption {
   noAudit: boolean;
