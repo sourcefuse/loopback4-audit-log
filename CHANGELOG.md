@@ -1,3 +1,31 @@
+## Release [v3.2.3](https://github.com/sourcefuse/loopback4-audit-log/compare/v3.2.2..v3.2.3) April 24, 2023
+Welcome to the April 24, 2023 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
+
+  - [Loopback version update](https://github.com/sourcefuse/loopback4-audit-log/issues/55) :- [chore(deps): loopback version update ](https://github.com/sourcefuse/loopback4-audit-log/commit/681b74b1d582b95effa1fd4f4cb691a7a1828f93) was commited on April 24, 2023 by [RaghavaroraSF](mailto:97958393+RaghavaroraSF@users.noreply.github.com)
+    
+      - loopback version update
+      
+      -  GH-55
+      
+  
+  - [Fix Sonar Quality Gate](https://github.com/sourcefuse/loopback4-audit-log/issues/47) :- [fix(chore): fixing sonar smells ](https://github.com/sourcefuse/loopback4-audit-log/commit/f7ac73a6566c1341b4c296b777989e527b7ff4bc) was commited on March 21, 2023 by [arpit1503khanna](mailto:108673359+arpit1503khanna@users.noreply.github.com)
+    
+      - * fix(chore): fixing sonar smells
+      
+      -  resolving sonar smells to improve quality gate
+      
+      -  GH-47
+      
+      - * fix(chore): fixing sonar smells
+      
+      -  resolving sonar smells to improve quality gate
+      
+      -  GH-47
+      
+  
+Clink on the above links to understand the changes in detail.
+  ___
+
 ## Release [v3.2.2](https://github.com/sourcefuse/loopback4-audit-log/compare/v3.2.1..v3.2.2) March 13, 2023
 Welcome to the March 13, 2023 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
 
