@@ -1,5 +1,5 @@
-import {Constructor} from '@loopback/core';
-import {EntityCrudRepository} from '@loopback/repository';
+import {Constructor, Getter} from '@loopback/core';
+import {DefaultCrudRepository, Entity, juggler} from '@loopback/repository';
 import {expect, sinon} from '@loopback/testlab';
 import {
   Action,
@@ -54,28 +54,46 @@ const mockUser = {
 };
 
 describe('Audit Mixin', () => {
-  const returnedMixedClass = AuditRepositoryMixin<
+  class ReturnedMixedClass extends AuditRepositoryMixin<
     MockModel,
     typeof MockModel.prototype.id,
     {},
     string,
     Constructor<
-      EntityCrudRepository<MockModel, typeof MockModel.prototype.id, {}>
+      DefaultCrudRepository<MockModel, typeof MockModel.prototype.id, {}>
     >
-  >(MockClass, mockOpts);
+  >(MockClass, mockOpts) {
+    constructor(
+      entityClass: typeof Entity & {
+        prototype: MockModel;
+      },
+      dataSource: juggler.DataSource,
+      readonly getCurrentUser?: Getter<typeof mockUser>,
+    ) {
+      super(entityClass, dataSource);
+    }
+  }
 
-  const returnedMixedClassInstance = new returnedMixedClass();
-  returnedMixedClassInstance.getCurrentUser = sinon.stub().resolves(mockUser);
+  const ds: juggler.DataSource = new juggler.DataSource({
+    name: 'db',
+    connector: 'memory',
+  });
+  const returnedMixedClassInstance = new ReturnedMixedClass(
+    MockModel,
+    ds,
+    sinon.stub().resolves(mockUser),
+  );
   returnedMixedClassInstance.getAuditLogRepository = sinon
     .stub()
     .resolves(new MockAuditRepo());
 
-  //for checking message in case Audit can't be made due to any reason
+  // for checking message in case Audit can't be made due to any reason
 
-  const returnedMixedClassErrorInstance = new returnedMixedClass();
-  returnedMixedClassErrorInstance.getCurrentUser = sinon
-    .stub()
-    .resolves(mockUser);
+  const returnedMixedClassErrorInstance = new ReturnedMixedClass(
+    MockModel,
+    ds,
+    sinon.stub().resolves(mockUser),
+  );
   returnedMixedClassErrorInstance.getAuditLogRepository = sinon
     .stub()
     .resolves(new MockAuditRepoError());

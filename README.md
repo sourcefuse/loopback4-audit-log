@@ -116,7 +116,8 @@ const config = {
 @lifeCycleObserver('datasource')
 export class AuditDataSource
   extends juggler.DataSource
-  implements LifeCycleObserver {
+  implements LifeCycleObserver
+{
   static dataSourceName = AuditDbSourceName;
   static readonly defaultConfig = config;
 
@@ -200,6 +201,41 @@ This will create all insert, update, delete audits for this model.
 
 ```ts
 create(data, {noAudit: true});
+```
+
+- The package exposes a conditional mixin for your repository classes. Just extend your repository class with `ConditionalAuditRepositoryMixin`, for all those repositories where you need audit data based on condition whether `ADD_AUDIT_LOG_MIXIN` is set true. See an example below. For a model `Group`, here we are extending the `GroupRepository` with `AuditRepositoryMixin`.
+
+```ts
+import {repository} from '@loopback/repository';
+import {Group, GroupRelations} from '../models';
+import {PgdbDataSource} from '../datasources';
+import {inject, Getter, Constructor} from '@loopback/core';
+import {AuthenticationBindings, IAuthUser} from 'loopback4-authentication';
+import {ConditionalAuditRepositoryMixin} from '@sourceloop/audit-log';
+import {AuditLogRepository} from './audit-log.repository';
+
+const groupAuditOpts: IAuditMixinOptions = {
+  actionKey: 'Group_Logs',
+};
+
+export class GroupRepository extends ConditionalAuditRepositoryMixin(
+  DefaultUserModifyCrudRepository<
+    Group,
+    typeof Group.prototype.id,
+    GroupRelations
+  >,
+  groupAuditOpts,
+) {
+  constructor(
+    @inject('datasources.pgdb') dataSource: PgdbDataSource,
+    @inject.getter(AuthenticationBindings.CURRENT_USER)
+    public getCurrentUser: Getter<IAuthUser>,
+    @repository.getter('AuditLogRepository')
+    public getAuditLogRepository: Getter<AuditLogRepository>,
+  ) {
+    super(Group, dataSource, getCurrentUser);
+  }
+}
 ```
 
 ## Feedback

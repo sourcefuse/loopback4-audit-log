@@ -1,16 +1,20 @@
-import {Constructor, MixinTarget} from '@loopback/core';
 import {
   Count,
   DataObject,
+  DefaultCrudRepository,
   Entity,
-  EntityCrudRepository,
   Where,
 } from '@loopback/repository';
 import {keyBy, cloneDeep} from 'lodash';
 
 import {Action, AuditLog} from '../models';
 import {AuditLogRepository} from '../repositories';
-import {AuditOptions, IAuditMixin, IAuditMixinOptions} from '../types';
+import {
+  AbstractConstructor,
+  AuditOptions,
+  IAuditMixin,
+  IAuditMixinOptions,
+} from '../types';
 
 //sonarignore:start
 export function AuditRepositoryMixin<
@@ -19,17 +23,18 @@ export function AuditRepositoryMixin<
   Relations extends object,
   UserID,
   //sonarignore:end
-  R extends MixinTarget<EntityCrudRepository<M, ID, Relations>>,
+  R extends AbstractConstructor<DefaultCrudRepository<M, ID, Relations>>,
 >(
   superClass: R,
   opts: IAuditMixinOptions,
-): R & Constructor<IAuditMixin<UserID>> {
-  class MixedRepository extends superClass implements IAuditMixin<UserID> {
+): R & AbstractConstructor<IAuditMixin<UserID>> {
+  abstract class MixedRepository
+    extends superClass
+    implements IAuditMixin<UserID>
+  {
     getAuditLogRepository: () => Promise<AuditLogRepository>;
     getCurrentUser?: () => Promise<{id?: UserID}>;
 
-    /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
-    // @ts-ignore
     async create(
       dataObject: DataObject<M>,
       options?: AuditOptions,
@@ -64,8 +69,6 @@ export function AuditRepositoryMixin<
       return created;
     }
 
-    /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
-    // @ts-ignore
     async createAll(
       dataObjects: DataObject<M>[],
       options?: AuditOptions,
@@ -103,8 +106,6 @@ export function AuditRepositoryMixin<
       return created;
     }
 
-    /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
-    // @ts-ignore
     async updateAll(
       dataObject: DataObject<M>,
       where?: Where<M>,
@@ -152,8 +153,6 @@ export function AuditRepositoryMixin<
       return updatedCount;
     }
 
-    /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
-    // @ts-ignore
     async deleteAll(where?: Where<M>, options?: AuditOptions): Promise<Count> {
       if (options?.noAudit) {
         return super.deleteAll(where, options);
@@ -195,8 +194,6 @@ export function AuditRepositoryMixin<
       return deletedCount;
     }
 
-    /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
-    // @ts-ignore
     async updateById(
       id: ID,
       data: DataObject<M>,
@@ -245,8 +242,6 @@ export function AuditRepositoryMixin<
       }
     }
 
-    /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
-    // @ts-ignore
     async replaceById(
       id: ID,
       data: DataObject<M>,
@@ -288,8 +283,6 @@ export function AuditRepositoryMixin<
       }
     }
 
-    /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
-    // @ts-ignore
     async deleteById(id: ID, options?: AuditOptions): Promise<void> {
       if (options?.noAudit) {
         return super.deleteById(id, options);

@@ -16,3 +16,8 @@ export interface AuditLogOption {
   noAudit: boolean;
 }
 export declare type AuditOptions = Options & AuditLogOption;
+
+export type AbstractConstructor<T> = abstract new (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ...args: any[]
+) => T;

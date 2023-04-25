@@ -1,22 +1,22 @@
 import {
-  EntityCrudRepository,
   DataObject,
   AnyObject,
-  Command,
   Count,
   Entity,
   Filter,
   FilterExcludingWhere,
   InclusionResolver,
-  PositionalParameters,
   Where,
+  DefaultCrudRepository,
 } from '@loopback/repository';
 import {mockData, mockDataArray} from './mockData';
 import {MockModel} from './mockModel';
 
-export class MockClass
-  implements EntityCrudRepository<MockModel, string | undefined, {}>
-{
+export class MockClass extends DefaultCrudRepository<
+  MockModel,
+  string | undefined,
+  {}
+> {
   entityClass: typeof Entity & {prototype: MockModel} = MockModel;
   inclusionResolvers: Map<string, InclusionResolver<MockModel, Entity>>;
 
@@ -88,13 +88,6 @@ export class MockClass
     });
   }
   exists(id: string | undefined, options?: AnyObject): Promise<boolean> {
-    throw new Error('Method not implemented.');
-  }
-  execute(
-    command: Command,
-    parameters: AnyObject | PositionalParameters,
-    options?: AnyObject,
-  ): Promise<AnyObject> {
     throw new Error('Method not implemented.');
   }
   create(

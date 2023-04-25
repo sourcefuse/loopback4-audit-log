@@ -43,8 +43,9 @@
     "!*/__tests__"
   ],
   "dependencies": {
-    "@loopback/boot": "^5.0.10",
-    "@loopback/core": "^4.0.10",
+    "@loopback/boot": "^5.0.9",
+    "@loopback/core": "^4.0.9",
+    "@loopback/repository": "^5.1.4",
     "jsdom": "^20.0.3",
     "lodash": "^4.17.21",
     "tslib": "^2.4.1"
