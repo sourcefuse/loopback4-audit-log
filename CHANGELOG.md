@@ -1,3 +1,34 @@
+## Release [v4.0.0](https://github.com/sourcefuse/loopback4-audit-log/compare/v3.2.3..v4.0.0) April 25, 2023
+Welcome to the April 25, 2023 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
+
+  - [Add Audit Log Mixin Wrapper Around Audit Log Mixin](https://github.com/sourcefuse/loopback4-audit-log/issues/57) :- [feat(mixin): add conditional audit repository mixin ](https://github.com/sourcefuse/loopback4-audit-log/commit/10257b6094df79497d30084cc42f3e15eef34e0c) was commited on April 25, 2023 by [Sunny Tyagi](mailto:107617248+Tyagi-Sunny@users.noreply.github.com)
+    
+      - To be used when the actual audit mixin is to be applied conditionally from the
+      
+      - flag from the environment variables
+      
+      - rather than the code.
+      
+      -  BREAKING CHANGE:
+      
+      - Audit Repository Mixin return type changed and now is being
+      
+      - returned as an abstract class. This
+      
+      - doesn&#39;t affect 99% of the users because in
+      
+      - crud repositories this mixin is already applied on the base class. Only those
+      
+      - who are directly assigning the mixin-ed class to some variable will have the
+      
+      - type error showing them.
+      
+      -  GH-57
+      
+  
+Clink on the above links to understand the changes in detail.
+  ___
+
 ## Release [v3.2.3](https://github.com/sourcefuse/loopback4-audit-log/compare/v3.2.2..v3.2.3) April 24, 2023
 Welcome to the April 24, 2023 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
 
