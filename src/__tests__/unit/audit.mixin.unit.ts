@@ -11,6 +11,7 @@ import {consoleMessage} from '../acceptance/audit.mixin.acceptance';
 import {
   MockClass,
   mockClassMethodCall,
+  optionsReceivedByParentRepository,
   resetMethodCalls,
 } from './fixtures/mockClass';
 import {mockData, mockDataArray, resetMockData} from './fixtures/mockData';
@@ -249,6 +250,21 @@ describe('Audit Mixin', () => {
     //check if super class method called
     expect(mockClassMethodCall.updateById).to.be.true();
   });
+
+  it("should forward the options param to base repository's findById method", async () => {
+    const options = {someTestKey: 'someTestValue'};
+    await returnedMixedClassInstance.updateById(
+      mockData.id,
+      {
+        itemName: 'replacedTestItemName',
+        description: 'replacedTestItemDescription',
+      },
+      options,
+    );
+
+    // check if findById received the options originally passed to mixined class
+    expect(optionsReceivedByParentRepository.findById).to.be.eql(options);
+  });
   it('should update record and create appropriate Audit Log on calling updateById method', async () => {
     const beforeMockData = Object.assign({}, mockData);
 
@@ -337,6 +353,21 @@ describe('Audit Mixin', () => {
 
     //check if super class method called
     expect(mockClassMethodCall.updateAll).to.be.true();
+  });
+
+  it("should forward the options param to base repository's find method", async () => {
+    const options = {someKey: 'someValue'};
+    await returnedMixedClassInstance.updateAll(
+      {
+        itemName: 'replacedTestItemName',
+        description: 'replacedTestItemDescription',
+      },
+      undefined,
+      options,
+    );
+
+    // check if find method received the options originally passed to mixined class
+    expect(optionsReceivedByParentRepository.find).to.be.eql(options);
   });
 
   it('should update records and create appropriate Audit Logs on calling updateAll method', async () => {

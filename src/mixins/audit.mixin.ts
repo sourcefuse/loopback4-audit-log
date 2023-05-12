@@ -114,10 +114,10 @@ export function AuditRepositoryMixin<
       if (options?.noAudit) {
         return super.updateAll(dataObject, where, options);
       }
-      const toUpdate = await this.find({where});
+      const toUpdate = await this.find({where}, options);
       const beforeMap = keyBy(toUpdate, d => d.getId());
       const updatedCount = await super.updateAll(dataObject, where, options);
-      const updated = await this.find({where});
+      const updated = await this.find({where}, options);
 
       if (this.getCurrentUser) {
         const user = await this.getCurrentUser();
@@ -157,7 +157,7 @@ export function AuditRepositoryMixin<
       if (options?.noAudit) {
         return super.deleteAll(where, options);
       }
-      const toDelete = await this.find({where});
+      const toDelete = await this.find({where}, options);
       const beforeMap = keyBy(toDelete, d => d.getId());
       const deletedCount = await super.deleteAll(where, options);
 
@@ -202,7 +202,7 @@ export function AuditRepositoryMixin<
       if (options?.noAudit) {
         return super.updateById(id, data, options);
       }
-      const before = await this.findById(id);
+      const before = await this.findById(id, undefined, options);
       // loopback repository internally calls updateAll so we don't want to create another log
       if (options) {
         options.noAudit = true;
@@ -250,9 +250,9 @@ export function AuditRepositoryMixin<
       if (options?.noAudit) {
         return super.replaceById(id, data, options);
       }
-      const before = await this.findById(id);
+      const before = await this.findById(id, undefined, options);
       await super.replaceById(id, data, options);
-      const after = await this.findById(id);
+      const after = await this.findById(id, undefined, options);
 
       if (this.getCurrentUser) {
         const user = await this.getCurrentUser();
@@ -287,7 +287,7 @@ export function AuditRepositoryMixin<
       if (options?.noAudit) {
         return super.deleteById(id, options);
       }
-      const before = await this.findById(id);
+      const before = await this.findById(id, undefined, options);
       await super.deleteById(id, options);
 
       if (this.getCurrentUser) {
