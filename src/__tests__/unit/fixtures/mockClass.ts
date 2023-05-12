@@ -34,6 +34,7 @@ export class MockClass extends DefaultCrudRepository<
     filter?: FilterExcludingWhere<MockModel>,
     options?: AnyObject,
   ): Promise<MockModel> {
+    optionsReceivedByParentRepository.findById = options;
     return new Promise(resolve => {
       const mockDataToReturn = Object.assign({}, mockData);
       resolve(mockDataToReturn);
@@ -109,6 +110,7 @@ export class MockClass extends DefaultCrudRepository<
     });
   }
   find(filter?: Filter<MockModel>, options?: AnyObject): Promise<MockModel[]> {
+    optionsReceivedByParentRepository.find = options;
     return new Promise(resolve => {
       const mockDataArrayToReturn: MockModel[] = [];
       mockDataArray.forEach(data => {
@@ -158,6 +160,10 @@ export const mockClassMethodCall = {
   replaceById: false,
   updateAll: false,
 };
+export const optionsReceivedByParentRepository: {
+  findById?: AnyObject;
+  find?: AnyObject;
+} = {};
 export function resetMethodCalls() {
   mockClassMethodCall.create = false;
   mockClassMethodCall.createAll = false;
