@@ -1,16 +1,12 @@
-import {
-  Count,
-  DataObject,
-  DefaultCrudRepository,
-  Entity,
-  Where,
-} from '@loopback/repository';
+import {Count, DataObject, Entity, Where} from '@loopback/repository';
 import {keyBy, cloneDeep} from 'lodash';
 
 import {Action, AuditLog} from '../models';
 import {AuditLogRepository} from '../repositories';
+import {AuditLogRepository as SequelizeAuditLogRepository} from '../repositories/sequelize';
 import {
   AbstractConstructor,
+  AuditMixinBase,
   AuditOptions,
   IAuditMixin,
   IAuditMixinOptions,
@@ -23,7 +19,7 @@ export function AuditRepositoryMixin<
   Relations extends object,
   UserID,
   //sonarignore:end
-  R extends AbstractConstructor<DefaultCrudRepository<M, ID, Relations>>,
+  R extends AuditMixinBase<M, ID, Relations>,
 >(
   superClass: R,
   opts: IAuditMixinOptions,
@@ -32,7 +28,9 @@ export function AuditRepositoryMixin<
     extends superClass
     implements IAuditMixin<UserID>
   {
-    getAuditLogRepository: () => Promise<AuditLogRepository>;
+    getAuditLogRepository: () => Promise<
+      AuditLogRepository | SequelizeAuditLogRepository
+    >;
     getCurrentUser?: () => Promise<{id?: UserID}>;
 
     async create(
