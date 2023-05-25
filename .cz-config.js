@@ -33,6 +33,7 @@ module.exports = {
     {name: 'core'},
     {name: 'maintenance'},
     {name: 'mixin'},
+    {name: 'sequelize'},
   ],
 
   appendBranchNameToCommitMessage: true,

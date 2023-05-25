@@ -8,6 +8,20 @@
   ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./sequelize": {
+      "types": "./dist/index.sequelize.d.ts",
+      "default": "./dist/index.sequelize.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "sequelize": [
+        "./dist/index.sequelize.d.ts"
+      ]
+    }
+  },
   "engines": {
     "node": ">=16"
   },
@@ -46,6 +60,7 @@
     "@loopback/boot": "^5.0.9",
     "@loopback/core": "^4.0.9",
     "@loopback/repository": "^5.1.5",
+    "@loopback/sequelize": "^0.2.0",
     "jsdom": "^20.0.3",
     "lodash": "^4.17.21",
     "tslib": "^2.4.1"
