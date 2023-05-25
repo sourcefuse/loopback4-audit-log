@@ -60,10 +60,10 @@
     "@loopback/boot": "^6.0.0",
     "@loopback/core": "^5.0.0",
     "@loopback/repository": "^6.0.0",
-    "@loopback/sequelize": "^0.2.0",
+    "@loopback/sequelize": "^0.3.0",
     "jsdom": "^20.0.3",
     "lodash": "^4.17.21",
-    "tslib": "^2.5.1"
+    "tslib": "^2.5.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",
