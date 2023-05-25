@@ -238,6 +238,42 @@ export class GroupRepository extends ConditionalAuditRepositoryMixin(
 }
 ```
 
+## Using with Sequelize ORM
+
+This extension provides support to both juggler (the default loopback ORM) and sequelize.
+
+If your loopback project is already using `SequelizeCrudRepository` from [@loopback/sequelize](https://www.npmjs.com/package/@loopback/sequelize) or equivalent add on repositories from sourceloop packages like [`SequelizeUserModifyCrudRepository`](https://sourcefuse.github.io/arc-docs/arc-api-docs/packages/core/#sequelizeusermodifycrudrepository). You'll need to make just two changes:
+
+1. The import statements should have the suffix `/sequelize`, like below:
+
+```ts
+import {
+  AuditRepositoryMixin,
+  AuditLogRepository,
+} from '@sourceloop/audit-log/sequelize';
+```
+
+2. The Audit datasource's parent class should be `SequelizeDataSource`.
+
+```ts
+import {SequelizeDataSource} from '@loopback/sequelize';
+
+export class AuditDataSource
+  extends SequelizeDataSource
+  implements LifeCycleObserver
+{
+  static dataSourceName = AuditDbSourceName;
+  static readonly defaultConfig = config;
+
+  constructor(
+    @inject('datasources.config.audit', {optional: true})
+    dsConfig: object = config,
+  ) {
+    super(dsConfig);
+  }
+}
+```
+
 ## Feedback
 
 If you've noticed a bug or have a question or have a feature request, [search the issue tracker](https://github.com/sourcefuse/loopback4-audit-log/issues) to see if someone else in the community has already created a ticket.

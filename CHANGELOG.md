@@ -1,3 +1,20 @@
+## Release [v5.1.0](https://github.com/sourcefuse/loopback4-audit-log/compare/v5.0.0..v5.1.0) May 25, 2023
+Welcome to the May 25, 2023 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
+
+  - [Provide Sequelize Support](https://github.com/sourcefuse/loopback4-audit-log/issues/69) :- [feat(sequelize): add sequelize support ](https://github.com/sourcefuse/loopback4-audit-log/commit/1508e210780a0e9326729594ba35b4f5f155aa92) was commited on May 25, 2023 by [Shubham P](mailto:shubham.prajapat@sourcefuse.com)
+    
+      - modified mixin argument type to accept non default crud repositories
+      
+      - added
+      
+      - directory import syntax to provide sequelize specific artifacts
+      
+      -  GH-69
+      
+  
+Clink on the above links to understand the changes in detail.
+  ___
+
 ## Release [v4.0.1](https://github.com/sourcefuse/loopback4-audit-log/compare/v4.0.0..v4.0.1) April 25, 2023
 Welcome to the April 25, 2023 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
 
