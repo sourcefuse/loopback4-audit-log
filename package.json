@@ -1,6 +1,6 @@
 {
   "name": "@sourceloop/audit-log",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "description": "Audit Log extension",
   "keywords": [
     "loopback-extension",
