@@ -11,11 +11,13 @@ import {
 } from '@loopback/repository';
 
 export const AuditDbSourceName = 'AuditDB';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export interface IAuditMixin<UserID> {
   getAuditLogRepository: () => Promise<
     AuditLogRepository | SequelizeAuditLogRepository
   >;
-  getCurrentUser?: () => Promise<{id?: UserID}>;
+  getCurrentUser?: () => Promise<User>;
+  actorIdKey?: ActorId;
 }
 
 export interface IAuditMixinOptions {
@@ -59,3 +61,23 @@ export type AuditMixinBase<T extends Entity, ID, Relations> = MixinBaseClass<{
   deleteAll(where?: Where<T>, options?: Options): Promise<Count>;
   deleteById(id: ID, options?: Options): Promise<void>;
 }>;
+
+export interface User<ID = string, TID = string, UTID = string> {
+  id?: string;
+  username: string;
+  password?: string;
+  identifier?: ID;
+  permissions: string[];
+  authClientId: number;
+  email?: string;
+  role: string;
+  firstName: string;
+  lastName: string;
+  middleName?: string;
+  tenantId?: TID;
+  userTenantId?: UTID;
+  passwordExpiryTime?: Date;
+  allowedResources?: string[];
+}
+
+export type ActorId = Extract<keyof User, string>;

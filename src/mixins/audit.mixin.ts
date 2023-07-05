@@ -6,10 +6,12 @@ import {AuditLogRepository} from '../repositories';
 import {AuditLogRepository as SequelizeAuditLogRepository} from '../repositories/sequelize';
 import {
   AbstractConstructor,
+  ActorId,
   AuditMixinBase,
   AuditOptions,
   IAuditMixin,
   IAuditMixinOptions,
+  User,
 } from '../types';
 
 //sonarignore:start
@@ -31,7 +33,8 @@ export function AuditRepositoryMixin<
     getAuditLogRepository: () => Promise<
       AuditLogRepository | SequelizeAuditLogRepository
     >;
-    getCurrentUser?: () => Promise<{id?: UserID}>;
+    getCurrentUser?: () => Promise<User>;
+    actorIdKey?: ActorId;
 
     async create(
       dataObject: DataObject<M>,
@@ -47,7 +50,7 @@ export function AuditRepositoryMixin<
         const audit = new AuditLog({
           actedAt: new Date(),
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          actor: (user?.id as any)?.toString() ?? '0', //NOSONAR
+          actor: (user[this.actorIdKey ?? 'id'] as any)?.toString() ?? '0', //NOSONAR
           action: Action.INSERT_ONE,
           after: created.toJSON(),
           entityId: created.getId(),
@@ -83,7 +86,7 @@ export function AuditRepositoryMixin<
             new AuditLog({
               actedAt: new Date(),
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              actor: (user?.id as any).toString() ?? '0', //NOSONAR
+              actor: (user[this.actorIdKey ?? 'id'] as any)?.toString() ?? '0', //NOSONAR
               action: Action.INSERT_MANY,
               after: data.toJSON(),
               entityId: data.getId(),
@@ -128,7 +131,7 @@ export function AuditRepositoryMixin<
             new AuditLog({
               actedAt: new Date(),
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              actor: (user?.id as any).toString() ?? '0', //NOSONAR
+              actor: (user[this.actorIdKey ?? 'id'] as any)?.toString() ?? '0', //NOSONAR
               action: Action.UPDATE_MANY,
               before: (beforeMap[data.getId()] as Entity).toJSON(),
               after: data.toJSON(),
@@ -170,7 +173,7 @@ export function AuditRepositoryMixin<
             new AuditLog({
               actedAt: new Date(),
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              actor: (user?.id as any).toString() ?? '0', //NOSONAR
+              actor: (user[this.actorIdKey ?? 'id'] as any)?.toString() ?? '0', //NOSONAR
               action: Action.DELETE_MANY,
               before: (beforeMap[data.getId()] as Entity).toJSON(),
               entityId: data.getId(),
@@ -220,7 +223,7 @@ export function AuditRepositoryMixin<
         const auditLog = new AuditLog({
           actedAt: new Date(),
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          actor: (user?.id as any).toString() ?? '0', //NOSONAR
+          actor: (user[this.actorIdKey ?? 'id'] as any)?.toString() ?? '0', //NOSONAR
           action: Action.UPDATE_ONE,
           before: before.toJSON(),
           after: after.toJSON(),
@@ -261,7 +264,7 @@ export function AuditRepositoryMixin<
         const auditLog = new AuditLog({
           actedAt: new Date(),
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          actor: (user?.id as any).toString() ?? '0', //NOSONAR
+          actor: (user[this.actorIdKey ?? 'id'] as any)?.toString() ?? '0', //NOSONAR
           action: Action.UPDATE_ONE,
           before: before.toJSON(),
           after: after.toJSON(),
@@ -297,7 +300,7 @@ export function AuditRepositoryMixin<
         const auditLog = new AuditLog({
           actedAt: new Date(),
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          actor: (user?.id as any).toString() ?? '0', //NOSONAR
+          actor: (user[this.actorIdKey ?? 'id'] as any)?.toString() ?? '0', //NOSONAR
           action: Action.DELETE_ONE,
           before: before.toJSON(),
           entityId: before.getId(),

@@ -1,6 +1,6 @@
 import {expect, sinon} from '@loopback/testlab';
 import {v4 as uuidv4} from 'uuid';
-import {Action} from '../..';
+import {Action, User} from '../..';
 import {TestAuditDataSource} from './fixtures/datasources/audit.datasource';
 import {TestDataSource} from './fixtures/datasources/test.datasource';
 import {TestModel} from './fixtures/models/test.model';
@@ -16,9 +16,16 @@ console.error = (message: string) => {
   consoleMessage = message;
 };
 
-const mockUser = {
-  id: 'testId',
-  name: 'testName',
+const mockUser: User = {
+  id: 'testCurrentUserId',
+  username: 'testCurrentUserName',
+  authClientId: 123,
+  permissions: ['1', '2', '3'],
+  role: 'admin',
+  firstName: 'test',
+  lastName: 'lastname',
+  tenantId: 'tenantId',
+  userTenantId: 'userTenantId',
 };
 
 describe('Audit Mixin', () => {
@@ -27,6 +34,7 @@ describe('Audit Mixin', () => {
   const auditLogRepositoryInstance = new TestAuditLogRepository(
     new TestAuditDataSource(),
   );
+  const actorIdKey = 'id';
   const getAuditLogRepository = sinon
     .stub()
     .resolves(auditLogRepositoryInstance);
@@ -34,6 +42,7 @@ describe('Audit Mixin', () => {
     testDataSourceInstance,
     getCurrentUser,
     getAuditLogRepository,
+    actorIdKey,
   );
 
   beforeEach(async () => {
