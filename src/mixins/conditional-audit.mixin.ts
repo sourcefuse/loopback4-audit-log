@@ -1,5 +1,5 @@
-import {DefaultCrudRepository, Entity} from '@loopback/repository';
-import {AbstractConstructor, IAuditMixinOptions} from '../types';
+import {Entity} from '@loopback/repository';
+import {AuditMixinBase, IAuditMixinOptions} from '../types';
 import {AuditRepositoryMixin} from './audit.mixin';
 
 /**
@@ -10,11 +10,11 @@ export function ConditionalAuditRepositoryMixin<
   T extends Entity,
   ID,
   Relations extends object,
-  S extends AbstractConstructor<DefaultCrudRepository<T, ID, Relations>>,
+  S extends AuditMixinBase<T, ID, Relations>,
 >(
-  constructor: S & AbstractConstructor<DefaultCrudRepository<T, ID, Relations>>,
+  constructor: S & AuditMixinBase<T, ID, Relations>,
   opt: IAuditMixinOptions,
-): S & AbstractConstructor<DefaultCrudRepository<T, ID, Relations>> {
+): S & AuditMixinBase<T, ID, Relations> {
   const ConditionalRepo =
     process.env.ADD_AUDIT_LOG_MIXIN === 'true'
       ? AuditRepositoryMixin<T, ID, Relations, string, S>(constructor, opt)

@@ -27,6 +27,7 @@ export interface IAuditMixinOptions {
 }
 export interface AuditLogOption {
   noAudit: boolean;
+  actorId?: string;
 }
 export declare type AuditOptions = Options & AuditLogOption;
 
@@ -60,6 +61,8 @@ export type AuditMixinBase<T extends Entity, ID, Relations> = MixinBaseClass<{
   replaceById(id: ID, data: DataObject<T>, options?: Options): Promise<void>;
   deleteAll(where?: Where<T>, options?: Options): Promise<Count>;
   deleteById(id: ID, options?: Options): Promise<void>;
+  deleteAllHard?(where?: Where<T>, options?: Options): Promise<Count>;
+  deleteByIdHard?(id: ID, options?: Options): Promise<void>;
 }>;
 
 export interface User<ID = string, TID = string, UTID = string> {

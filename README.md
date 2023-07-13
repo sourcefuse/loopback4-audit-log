@@ -276,6 +276,15 @@ export class GroupRepository extends ConditionalAuditRepositoryMixin(
 }
 ```
 
+### Making current user not mandatory
+
+Incase you dont have current user binded in your application context and wish to log the activities within your application then in that case you can pass the actor id along with the
+options just like
+
+```ts
+await productRepo.create(product, {noAudit: false, actorId: 'userId'});
+```
+
 ## Using with Sequelize ORM
 
 This extension provides support to both juggler (the default loopback ORM) and sequelize.

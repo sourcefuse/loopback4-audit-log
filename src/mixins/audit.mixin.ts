@@ -49,8 +49,11 @@ export function AuditRepositoryMixin<
         delete extras.actionKey;
         const audit = new AuditLog({
           actedAt: new Date(),
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          actor: (user[this.actorIdKey ?? 'id'] as any)?.toString() ?? '0', //NOSONAR
+          actor:
+            options?.actorId ??
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (user[this.actorIdKey ?? 'id'] as any)?.toString() ?? //NOSONAR
+            '0',
           action: Action.INSERT_ONE,
           after: created.toJSON(),
           entityId: created.getId(),
@@ -85,8 +88,11 @@ export function AuditRepositoryMixin<
           data =>
             new AuditLog({
               actedAt: new Date(),
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              actor: (user[this.actorIdKey ?? 'id'] as any)?.toString() ?? '0', //NOSONAR
+              actor:
+                options?.actorId ??
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                (user[this.actorIdKey ?? 'id'] as any)?.toString() ?? //NOSONAR
+                '0',
               action: Action.INSERT_MANY,
               after: data.toJSON(),
               entityId: data.getId(),
@@ -130,8 +136,11 @@ export function AuditRepositoryMixin<
           data =>
             new AuditLog({
               actedAt: new Date(),
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              actor: (user[this.actorIdKey ?? 'id'] as any)?.toString() ?? '0', //NOSONAR
+              actor:
+                options?.actorId ??
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                (user[this.actorIdKey ?? 'id'] as any)?.toString() ?? //NOSONAR
+                '0',
               action: Action.UPDATE_MANY,
               before: (beforeMap[data.getId()] as Entity).toJSON(),
               after: data.toJSON(),
@@ -172,8 +181,11 @@ export function AuditRepositoryMixin<
           data =>
             new AuditLog({
               actedAt: new Date(),
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              actor: (user[this.actorIdKey ?? 'id'] as any)?.toString() ?? '0', //NOSONAR
+              actor:
+                options?.actorId ??
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                (user[this.actorIdKey ?? 'id'] as any)?.toString() ?? //NOSONAR
+                '0',
               action: Action.DELETE_MANY,
               before: (beforeMap[data.getId()] as Entity).toJSON(),
               entityId: data.getId(),
@@ -222,8 +234,11 @@ export function AuditRepositoryMixin<
         delete extras.actionKey;
         const auditLog = new AuditLog({
           actedAt: new Date(),
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          actor: (user[this.actorIdKey ?? 'id'] as any)?.toString() ?? '0', //NOSONAR
+          actor:
+            options?.actorId ??
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (user[this.actorIdKey ?? 'id'] as any)?.toString() ?? //NOSONAR
+            '0',
           action: Action.UPDATE_ONE,
           before: before.toJSON(),
           after: after.toJSON(),
@@ -263,8 +278,11 @@ export function AuditRepositoryMixin<
         delete extras.actionKey;
         const auditLog = new AuditLog({
           actedAt: new Date(),
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          actor: (user[this.actorIdKey ?? 'id'] as any)?.toString() ?? '0', //NOSONAR
+          actor:
+            options?.actorId ??
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (user[this.actorIdKey ?? 'id'] as any)?.toString() ?? //NOSONAR
+            '0',
           action: Action.UPDATE_ONE,
           before: before.toJSON(),
           after: after.toJSON(),
@@ -299,8 +317,101 @@ export function AuditRepositoryMixin<
         delete extras.actionKey;
         const auditLog = new AuditLog({
           actedAt: new Date(),
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          actor: (user[this.actorIdKey ?? 'id'] as any)?.toString() ?? '0', //NOSONAR
+
+          actor:
+            options?.actorId ??
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (user[this.actorIdKey ?? 'id'] as any)?.toString() ?? //NOSONAR
+            '0',
+          action: Action.DELETE_ONE,
+          before: before.toJSON(),
+          entityId: before.getId(),
+          actedOn: this.entityClass.modelName,
+          actionKey: opts.actionKey,
+          ...extras,
+        });
+
+        auditRepo.create(auditLog).catch(() => {
+          //sonarignore:start
+          console.error(
+            `Audit failed for data => ${JSON.stringify(auditLog.toJSON())}`,
+          );
+          //sonarignore:end
+        });
+      }
+    }
+    async deleteAllHard(
+      where?: Where<M>,
+      options?: AuditOptions,
+    ): Promise<Count> {
+      if (!super.deleteAllHard) {
+        return Promise.resolve({count: 0});
+      }
+      if (options?.noAudit) {
+        return super.deleteAllHard(where, options);
+      }
+      const toDelete = await this.find({where}, options);
+      const beforeMap = keyBy(toDelete, d => d.getId());
+      const deletedCount = await super.deleteAllHard(where, options);
+
+      if (this.getCurrentUser) {
+        const user = await this.getCurrentUser();
+        const auditRepo = await this.getAuditLogRepository();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const extras: any = Object.assign({}, opts); //NOSONAR
+        delete extras.actionKey;
+        const audits = toDelete.map(
+          data =>
+            new AuditLog({
+              actedAt: new Date(),
+              actor:
+                options?.actorId ??
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                (user[this.actorIdKey ?? 'id'] as any)?.toString() ?? //NOSONAR
+                '0',
+              action: Action.DELETE_MANY,
+              before: (beforeMap[data.getId()] as Entity).toJSON(),
+              entityId: data.getId(),
+              actedOn: this.entityClass.modelName,
+              actionKey: opts.actionKey,
+              ...extras,
+            }),
+        );
+        auditRepo.createAll(audits).catch(() => {
+          const auditsJson = audits.map(a => a.toJSON());
+          //sonarignore:start
+          console.error(
+            `Audit failed for data => ${JSON.stringify(auditsJson)}`,
+          );
+          //sonarignore:end
+        });
+      }
+      return deletedCount;
+    }
+
+    async deleteByIdHard(id: ID, options?: AuditOptions): Promise<void> {
+      if (!super.deleteByIdHard) {
+        return;
+      }
+      if (options?.noAudit) {
+        return super.deleteByIdHard(id, options);
+      }
+      const before = await this.findById(id, undefined, options);
+      await super.deleteByIdHard(id, options);
+
+      if (this.getCurrentUser) {
+        const user = await this.getCurrentUser();
+        const auditRepo = await this.getAuditLogRepository();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const extras: any = Object.assign({}, opts); //NOSONAR
+        delete extras.actionKey;
+        const auditLog = new AuditLog({
+          actedAt: new Date(),
+          actor:
+            options?.actorId ??
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (user[this.actorIdKey ?? 'id'] as any)?.toString() ?? //NOSOAR
+            '0',
           action: Action.DELETE_ONE,
           before: before.toJSON(),
           entityId: before.getId(),
