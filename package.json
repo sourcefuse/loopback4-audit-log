@@ -63,7 +63,7 @@
     "@loopback/sequelize": "^0.3.0",
     "jsdom": "^20.0.3",
     "lodash": "^4.17.21",
-    "tslib": "^2.5.2"
+    "tslib": "^2.5.3"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",
