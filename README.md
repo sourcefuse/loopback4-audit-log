@@ -1,8 +1,32 @@
-# @sourceloop/audit-log
+<a href="https://sourcefuse.github.io/arc-docs/arc-api-docs" target="_blank"><img src="https://github.com/sourcefuse/loopback4-microservice-catalog/blob/master/docs/assets/logo-dark-bg.png?raw=true" alt="ARC By SourceFuse logo" title="ARC By SourceFuse" align="right" width="150" /></a>
 
-[![LoopBack](<https://github.com/strongloop/loopback-next/raw/master/docs/site/imgs/branding/Powered-by-LoopBack-Badge-(blue)-@2x.png>)](http://loopback.io/)
+# [@sourceloop/audit-log](https://github.com/sourcefuse/loopback4-audit-log)
 
-A loopback-next extension for implementing audit logs in loopback applications for all DB transactions.This extension provides a generic model to store audit data, which can be backed by any datasource you want.
+<p align="left">
+<a href="https://www.npmjs.com/package/@sourceloop/audit-log">
+<img src="https://img.shields.io/npm/v/@sourceloop/audit-log.svg" alt="npm version" />
+</a>
+<a href="https://github.com/sourcefuse/loopback4-audit-log/graphs/contributors" target="_blank">
+<img alt="GitHub contributors" src="https://img.shields.io/github/contributors/sourcefuse/loopback4-audit-log">
+</a>
+<a href="https://www.npmjs.com/@sourceloop/audit-log" target="_blank">
+<img alt="downloads" src="https://img.shields.io/npm/dm/@sourceloop/audit-log">
+</a>
+<a href="./LICENSE">
+<img src="https://img.shields.io/github/license/sourcefuse/loopback4-audit-log" alt="License" />
+</a>
+<a href="https://loopback.io/" target="_blank">
+<img alt="Powered By LoopBack #" src="https://img.shields.io/badge/Powered%20by-LoopBack 4-brightgreen" />
+</a>
+</p>
+
+## Overview
+
+The `@sourceloop/audit-log` package is a powerful LoopBack 4 extension designed to seamlessly implement audit logs in your LoopBack applications. With this extension, you can effortlessly track and record audit data for all database transactions within your application.
+
+This package provides a generic model that enables the storage of audit logs, which can be backed by any datasource of your choice. Whether you're using MySQL, PostgreSQL, MongoDB, or any other database, the Audit Logs package ensures compatibility and flexibility.
+
+By incorporating the Audit Logs package into your application, you gain valuable insights into the history of data changes, user actions, and system events. Maintain a comprehensive audit trail for compliance, troubleshooting, and analysis purposes.
 
 ## Install
 
