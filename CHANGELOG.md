@@ -1,3 +1,50 @@
+## Release [v5.1.2](https://github.com/sourcefuse/loopback4-audit-log/compare/v5.1.1..v5.1.2) July 14, 2023
+Welcome to the July 14, 2023 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
+
+  - [Add ARC Branding in README](https://github.com/sourcefuse/loopback4-audit-log/issues/75) :- [docs(chore): add arc branding ](https://github.com/sourcefuse/loopback4-audit-log/commit/6286259c2c920b0d040708436139c5c5f14680d1) was commited on July 14, 2023 by [Shubham P](mailto:shubham.prajapat@sourcefuse.com)
+    
+      - with badges
+      
+      -  GH-75
+      
+  
+  - [](https://github.com/sourcefuse/loopback4-audit-log/issues/) :- [chore(deps): loopback version update ](https://github.com/sourcefuse/loopback4-audit-log/commit/de5283fecde28ad05d009c79f5df4c71b1329f7f) was commited on July 14, 2023 by [Surbhi](mailto:98279679+Surbhi-sharma1@users.noreply.github.com)
+    
+      - * chore(deps): loopback version update
+      
+      -  loopback version update
+      
+      -  GH-55
+      
+      - * fix(deps): resolve tslib conflict
+      
+      -  to use 2.5.3
+      
+      -  GH-0
+      
+      - ---------
+      
+      -  Co-authored-by: Shubham P &lt;shubham.prajapat@sourcefuse.com&gt;
+      
+  
+  - [](https://github.com/sourcefuse/loopback4-audit-log/issues/) :- [fix: upgrade tslib from 2.5.2 to 2.5.3 ](https://github.com/sourcefuse/loopback4-audit-log/commit/54a5a65e0ba67968e66e08352fa929b59502a25e) was commited on July 13, 2023 by [samarpan-b](mailto:39519829+samarpan-b@users.noreply.github.com)
+    
+      - Snyk has created this PR to upgrade tslib from 2.5.2 to 2.5.3.
+      
+      -  See this package in npm:
+      
+      - https://www.npmjs.com/package/tslib
+      
+      -  See this project in Snyk:
+      
+      - https://app.snyk.io/org/ashishkaushik/project/5125c396-2567-4bb3-a9fd-fb5d5012df2a?utm_source=github&amp;utm_medium=referral&amp;page=upgrade-pr
+      
+      -  Co-authored-by: snyk-bot &lt;snyk-bot@snyk.io&gt;
+      
+  
+Clink on the above links to understand the changes in detail.
+  ___
+
 ## Release [v5.1.1](https://github.com/sourcefuse/loopback4-audit-log/compare/v5.1.0..v5.1.1) June 7, 2023
 Welcome to the June 7, 2023 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
 
