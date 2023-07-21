@@ -49,7 +49,7 @@ export function AuditRepositoryMixin<
         delete extras.actionKey;
         const audit = new AuditLog({
           actedAt: new Date(),
-          actor: this.getActor(user, this.actorIdKey, options?.actorId),
+          actor: this.getActor(user, options?.actorId),
           action: Action.INSERT_ONE,
           after: created.toJSON(),
           entityId: created.getId(),
@@ -84,7 +84,7 @@ export function AuditRepositoryMixin<
           data =>
             new AuditLog({
               actedAt: new Date(),
-              actor: this.getActor(user, this.actorIdKey, options?.actorId),
+              actor: this.getActor(user, options?.actorId),
               action: Action.INSERT_MANY,
               after: data.toJSON(),
               entityId: data.getId(),
@@ -128,7 +128,7 @@ export function AuditRepositoryMixin<
           data =>
             new AuditLog({
               actedAt: new Date(),
-              actor: this.getActor(user, this.actorIdKey, options?.actorId),
+              actor: this.getActor(user, options?.actorId),
               action: Action.UPDATE_MANY,
               before: (beforeMap[data.getId()] as Entity).toJSON(),
               after: data.toJSON(),
@@ -169,7 +169,7 @@ export function AuditRepositoryMixin<
           data =>
             new AuditLog({
               actedAt: new Date(),
-              actor: this.getActor(user, this.actorIdKey, options?.actorId),
+              actor: this.getActor(user, options?.actorId),
               action: Action.DELETE_MANY,
               before: (beforeMap[data.getId()] as Entity).toJSON(),
               entityId: data.getId(),
@@ -218,7 +218,7 @@ export function AuditRepositoryMixin<
         delete extras.actionKey;
         const auditLog = new AuditLog({
           actedAt: new Date(),
-          actor: this.getActor(user, this.actorIdKey, options?.actorId),
+          actor: this.getActor(user, options?.actorId),
           action: Action.UPDATE_ONE,
           before: before.toJSON(),
           after: after.toJSON(),
@@ -258,7 +258,7 @@ export function AuditRepositoryMixin<
         delete extras.actionKey;
         const auditLog = new AuditLog({
           actedAt: new Date(),
-          actor: this.getActor(user, this.actorIdKey, options?.actorId),
+          actor: this.getActor(user, options?.actorId),
           action: Action.UPDATE_ONE,
           before: before.toJSON(),
           after: after.toJSON(),
@@ -293,7 +293,7 @@ export function AuditRepositoryMixin<
         delete extras.actionKey;
         const auditLog = new AuditLog({
           actedAt: new Date(),
-          actor: this.getActor(user, this.actorIdKey, options?.actorId),
+          actor: this.getActor(user, options?.actorId),
           action: Action.DELETE_ONE,
           before: before.toJSON(),
           entityId: before.getId(),
@@ -335,7 +335,7 @@ export function AuditRepositoryMixin<
           data =>
             new AuditLog({
               actedAt: new Date(),
-              actor: this.getActor(user, this.actorIdKey, options?.actorId),
+              actor: this.getActor(user, options?.actorId),
               action: Action.DELETE_MANY,
               before: (beforeMap[data.getId()] as Entity).toJSON(),
               entityId: data.getId(),
@@ -374,7 +374,7 @@ export function AuditRepositoryMixin<
         delete extras.actionKey;
         const auditLog = new AuditLog({
           actedAt: new Date(),
-          actor: this.getActor(user, this.actorIdKey, options?.actorId),
+          actor: this.getActor(user, options?.actorId),
           action: Action.DELETE_ONE,
           before: before.toJSON(),
           entityId: before.getId(),
@@ -392,15 +392,11 @@ export function AuditRepositoryMixin<
         });
       }
     }
-    getActor(
-      user: User,
-      actorIdKey?: ActorId,
-      optionsActorId?: string,
-    ): string {
+    getActor(user: User, optionsActorId?: string): string {
       return (
         optionsActorId ??
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (user[actorIdKey ?? 'id'] as any)?.toString() ?? //NOSOAR
+        (user[this.actorIdKey ?? 'id'] as any)?.toString() ?? //NOSOAR
         '0'
       );
     }
