@@ -7,7 +7,7 @@ metadata:
   namespace: arc
   description: LoopBack 4 extension for audit logs.
   tags:
-    - audit logs
+    - audit-logs
     - user activity
     - loopback
     - extension
