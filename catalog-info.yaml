@@ -8,7 +8,7 @@ metadata:
   description: LoopBack 4 extension for audit logs.
   tags:
     - audit-logs
-    - user activity
+    - user-activity
     - loopback
     - extension
   links:
