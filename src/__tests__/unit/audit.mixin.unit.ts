@@ -6,6 +6,7 @@ import {
   AuditLog,
   AuditRepositoryMixin,
   IAuditMixinOptions,
+  User,
 } from '../..';
 import {consoleMessage} from '../acceptance/audit.mixin.acceptance';
 import {
@@ -49,9 +50,16 @@ class MockAuditRepoError {
 const mockOpts: IAuditMixinOptions = {
   actionKey: 'Test_Logs',
 };
-const mockUser = {
+const mockUser: User = {
   id: 'testCurrentUserId',
-  name: 'testCurrentUserName',
+  username: 'testCurrentUserName',
+  authClientId: 123,
+  permissions: ['1', '2', '3'],
+  role: 'admin',
+  firstName: 'test',
+  lastName: 'lastname',
+  tenantId: 'tenantId',
+  userTenantId: 'userTenantId',
 };
 
 describe('Audit Mixin', () => {

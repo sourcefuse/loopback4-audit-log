@@ -227,6 +227,44 @@ This will create all insert, update, delete audits for this model.
 create(data, {noAudit: true});
 ```
 
+- The Actor field is now configurable and can save any string type value in the field.
+  Though the default value will be userId a developer can save any string field from the current User that is being passed.
+
+```ts
+export interface User<ID = string, TID = string, UTID = string> {
+  id?: string;
+  username: string;
+  password?: string;
+  identifier?: ID;
+  permissions: string[];
+  authClientId: number;
+  email?: string;
+  role: string;
+  firstName: string;
+  lastName: string;
+  middleName?: string;
+  tenantId?: TID;
+  userTenantId?: UTID;
+  passwordExpiryTime?: Date;
+  allowedResources?: string[];
+}
+```
+
+### Steps
+
+1. All you need to do is bind a User key to the ActorIdKey in application.ts
+
+```ts
+this.bind(AuthServiceBindings.ActorIdKey).to('username');
+```
+
+2. Pass the actorIdKey argument in the constructor
+
+```ts
+@inject(AuditBindings.ActorIdKey, {optional: true})
+public actorIdKey?: ActorId,
+```
+
 - The package exposes a conditional mixin for your repository classes. Just extend your repository class with `ConditionalAuditRepositoryMixin`, for all those repositories where you need audit data based on condition whether `ADD_AUDIT_LOG_MIXIN` is set true. See an example below. For a model `Group`, here we are extending the `GroupRepository` with `AuditRepositoryMixin`.
 
 ```ts
@@ -260,6 +298,15 @@ export class GroupRepository extends ConditionalAuditRepositoryMixin(
     super(Group, dataSource, getCurrentUser);
   }
 }
+```
+
+### Making current user not mandatory
+
+Incase you dont have current user binded in your application context and wish to log the activities within your application then in that case you can pass the actor id along with the
+options just like
+
+```ts
+await productRepo.create(product, {noAudit: false, actorId: 'userId'});
 ```
 
 ## Using with Sequelize ORM
