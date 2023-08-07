@@ -1,3 +1,61 @@
+## Release [v5.2.0](https://github.com/sourcefuse/loopback4-audit-log/compare/v5.1.2..v5.2.0) August 7, 2023
+Welcome to the August 7, 2023 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
+
+  - [Make actor field selection configurable](https://github.com/sourcefuse/loopback4-audit-log/issues/68) :- [feat(mixin): making the actor field configurable ](https://github.com/sourcefuse/loopback4-audit-log/commit/c6a2e4bc09232c2b1c90b81fa4714fc0bba67e02) was commited on August 7, 2023 by [yeshamavani](mailto:83634146+yeshamavani@users.noreply.github.com)
+    
+      - * feat(mixin): feat(mixin): making the actor field configurable
+      
+      -  added a key to that can be bounded to key of user that can be set as actor
+      
+      - GH-68
+      
+      -  GH-68
+      
+      - * feat(mixin): docs(mixin): add docs about how to configure actor id key
+      
+      -  steps explaining how to pass the actor id via the repository constructor to
+      
+      - change its value
+      
+      - GH-68
+      
+      -  GH-68
+      
+      - * feat(mixin): added delete all hard and delete by id hard
+      
+      -  in case current user is not available then can be passed through options
+      
+      -  GH-68
+      
+      - * feat(mixin): making the actor field configurable
+      
+      -  adding a separate function for actor to avoid repetition
+      
+      -  GH-68
+      
+      - * feat(mixin): making actor id configurable
+      
+      -  get actor from a private method
+      
+      -  GH-68
+      
+  
+  - [](https://github.com/sourcefuse/loopback4-audit-log/issues/) :- [](https://github.com/sourcefuse/loopback4-audit-log/commit/3071b66793ca0aa2d182d55cee86e93d228dc256) was commited on August 1, 2023 by [Shubham P](mailto:shubham.prajapat@sourcefuse.com)
+    
+  
+  - [](https://github.com/sourcefuse/loopback4-audit-log/issues/) :- [](https://github.com/sourcefuse/loopback4-audit-log/commit/be3a79d179546ef0efc60e82390ac532964ec46a) was commited on August 1, 2023 by [Shubham P](mailto:shubham.prajapat@sourcefuse.com)
+    
+  
+  - [](https://github.com/sourcefuse/loopback4-audit-log/issues/) :- [Add catalog-info.yaml config file ](https://github.com/sourcefuse/loopback4-audit-log/commit/582eeec9a7ec6de8f00c1eb20bf8b0ebfb76ebd1) was commited on August 1, 2023 by [Shubham P](mailto:shubham.prajapat@sourcefuse.com)
+    
+      - * Add catalog-info.yaml config file
+      
+      - * Update catalog-info.yaml
+      
+  
+Clink on the above links to understand the changes in detail.
+  ___
+
 ## Release [v5.1.2](https://github.com/sourcefuse/loopback4-audit-log/compare/v5.1.1..v5.1.2) July 14, 2023
 Welcome to the July 14, 2023 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
 
