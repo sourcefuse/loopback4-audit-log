@@ -105,9 +105,8 @@ describe('Audit Mixin', () => {
 
   it('should create audit log when new items are created on calling createAll', async () => {
     const mockItemArray = getMockItemArray();
-    const createMethodResponse = await testRepositoryInstance.createAll(
-      mockItemArray,
-    );
+    const createMethodResponse =
+      await testRepositoryInstance.createAll(mockItemArray);
     expect(createMethodResponse).to.match(mockItemArray);
 
     //check if stored in db
