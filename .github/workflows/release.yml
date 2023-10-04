@@ -46,4 +46,5 @@ jobs:
         # "HUSKY=0" disables pre-commit-msg check (Needed in order to allow semantic-release perform the release commit)
         run: HUSKY=0 npx semantic-release
         env:
+          GH_TOKEN: ${{ secrets.RELEASE_COMMIT_GH_PAT }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
