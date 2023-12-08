@@ -1,10 +1,10 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: loopback4-audit-log
+  name: loopback4-audit-log-s
   annotations:
     github.com/project-slug: sourcefuse/loopback4-audit-log
-    backstage.io/techdocs-ref: dir:.
+    backstage.io/techdocs-ref: url:https://github.com/sourcefuse/arc-docs/tree/main
   namespace: arc
   description: LoopBack 4 extension for audit logs.
   tags:
