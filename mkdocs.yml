@@ -1,5 +1,5 @@
-site_name: ${{values.component_id}}
-site_description: ${{values.description}}
+site_name: loopback4-audit-log
+site_description: loopback4-audit-log
 
 nav:
   - Introduction: index.md
