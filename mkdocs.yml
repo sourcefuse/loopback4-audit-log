@@ -1,0 +1,8 @@
+site_name: loopback4-audit-log
+site_description: loopback4-audit-log
+
+nav:
+  - Introduction: index.md
+
+plugins:
+  - techdocs-core
