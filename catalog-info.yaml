@@ -4,7 +4,7 @@ metadata:
   name: loopback4-audit-log-s
   annotations:
     github.com/project-slug: sourcefuse/loopback4-audit-log
-    backstage.io/techdocs-ref: url:https://github.com/sourcefuse/arc-docs/tree/main
+    backstage.io/techdocs-ref: dir:.
   namespace: arc
   description: LoopBack 4 extension for audit logs.
   tags:
