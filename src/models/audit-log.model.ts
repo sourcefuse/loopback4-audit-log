@@ -76,7 +76,7 @@ export class AuditLog extends Entity {
 
   // Indexer property to allow additional data
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [prop: string]: any; //NOSONAR
+  [prop: string]: any; // NOSONAR
 
   constructor(data?: Partial<AuditLog>) {
     super(data);

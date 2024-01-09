@@ -33,7 +33,7 @@ export declare type AuditOptions = Options & AuditLogOption;
 
 export type AbstractConstructor<T> = abstract new (
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ...args: any[]
+  ...args: any[] // NOSONAR
 ) => T;
 
 export type MixinBaseClass<T> = AbstractConstructor<T>;

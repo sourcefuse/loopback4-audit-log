@@ -1,6 +1,5 @@
 import {Count, DataObject, Entity, Where} from '@loopback/repository';
-import {keyBy, cloneDeep} from 'lodash';
-
+import {cloneDeep, keyBy} from 'lodash';
 import {Action, AuditLog} from '../models';
 import {AuditLogRepository} from '../repositories';
 import {AuditLogRepository as SequelizeAuditLogRepository} from '../repositories/sequelize';
@@ -14,13 +13,12 @@ import {
   User,
 } from '../types';
 
-//sonarignore:start
+// NOSONAR -  ignore camelCase naming convention
 export function AuditRepositoryMixin<
   M extends Entity,
   ID,
   Relations extends object,
   UserID,
-  //sonarignore:end
   R extends AuditMixinBase<M, ID, Relations>,
 >(
   superClass: R,
@@ -44,8 +42,7 @@ export function AuditRepositoryMixin<
       if (this.getCurrentUser && !options?.noAudit) {
         const user = await this.getCurrentUser();
         const auditRepo = await this.getAuditLogRepository();
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const extras: any = Object.assign({}, opts); //NOSONAR
+        const extras: Omit<IAuditMixinOptions, 'actionKey'> = {...opts};
         delete extras.actionKey;
         const audit = new AuditLog({
           actedAt: new Date(),
@@ -59,11 +56,10 @@ export function AuditRepositoryMixin<
         });
 
         auditRepo.create(audit).catch(() => {
-          //sonarignore:start
-          console.error(
-            `Audit failed for data => ${JSON.stringify(audit.toJSON())}`,
-          );
-          //sonarignore:end
+          const errorMessage = `Audit failed for data => ${JSON.stringify(
+            audit.toJSON(),
+          )}`;
+          console.error(errorMessage); // NOSONAR - Unexpected console statement
         });
       }
       return created;
@@ -77,8 +73,7 @@ export function AuditRepositoryMixin<
       if (this.getCurrentUser && !options?.noAudit) {
         const user = await this.getCurrentUser();
         const auditRepo = await this.getAuditLogRepository();
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const extras: any = Object.assign({}, opts); //NOSONAR
+        const extras: Omit<IAuditMixinOptions, 'actionKey'> = {...opts};
         delete extras.actionKey;
         const audits = created.map(
           data =>
@@ -95,11 +90,10 @@ export function AuditRepositoryMixin<
         );
         auditRepo.createAll(audits).catch(() => {
           const auditsJson = audits.map(a => a.toJSON());
-          //sonarignore:start
-          console.error(
-            `Audit failed for data => ${JSON.stringify(auditsJson)}`,
-          );
-          //sonarignore:end
+          const errorMessage = `Audit failed for data => ${JSON.stringify(
+            auditsJson,
+          )}`;
+          console.error(errorMessage); // NOSONAR - Unexpected console statement
         });
       }
       return created;
@@ -121,8 +115,7 @@ export function AuditRepositoryMixin<
       if (this.getCurrentUser) {
         const user = await this.getCurrentUser();
         const auditRepo = await this.getAuditLogRepository();
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const extras: any = Object.assign({}, opts); //NOSONAR
+        const extras: Omit<IAuditMixinOptions, 'actionKey'> = {...opts};
         delete extras.actionKey;
         const audits = updated.map(
           data =>
@@ -140,11 +133,10 @@ export function AuditRepositoryMixin<
         );
         auditRepo.createAll(audits).catch(() => {
           const auditsJson = audits.map(a => a.toJSON());
-          //sonarignore:start
-          console.error(
-            `Audit failed for data => ${JSON.stringify(auditsJson)}`,
-          );
-          //sonarignore:end
+          const errorMessage = `Audit failed for data => ${JSON.stringify(
+            auditsJson,
+          )}`;
+          console.error(errorMessage); // NOSONAR - Unexpected console statement
         });
       }
 
@@ -162,8 +154,7 @@ export function AuditRepositoryMixin<
       if (this.getCurrentUser) {
         const user = await this.getCurrentUser();
         const auditRepo = await this.getAuditLogRepository();
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const extras: any = Object.assign({}, opts); //NOSONAR
+        const extras: Omit<IAuditMixinOptions, 'actionKey'> = {...opts};
         delete extras.actionKey;
         const audits = toDelete.map(
           data =>
@@ -180,11 +171,10 @@ export function AuditRepositoryMixin<
         );
         auditRepo.createAll(audits).catch(() => {
           const auditsJson = audits.map(a => a.toJSON());
-          //sonarignore:start
-          console.error(
-            `Audit failed for data => ${JSON.stringify(auditsJson)}`,
-          );
-          //sonarignore:end
+          const errorMessage = `Audit failed for data => ${JSON.stringify(
+            auditsJson,
+          )}`;
+          console.error(errorMessage); // NOSONAR - Unexpected console statement
         });
       }
 
@@ -213,8 +203,7 @@ export function AuditRepositoryMixin<
       if (this.getCurrentUser) {
         const user = await this.getCurrentUser();
         const auditRepo = await this.getAuditLogRepository();
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const extras: any = Object.assign({}, opts); //NOSONAR
+        const extras: Omit<IAuditMixinOptions, 'actionKey'> = {...opts};
         delete extras.actionKey;
         const auditLog = new AuditLog({
           actedAt: new Date(),
@@ -229,11 +218,10 @@ export function AuditRepositoryMixin<
         });
 
         auditRepo.create(auditLog).catch(() => {
-          //sonarignore:start
-          console.error(
-            `Audit failed for data => ${JSON.stringify(auditLog.toJSON())}`,
-          );
-          //sonarignore:end
+          const errorMessage = `Audit failed for data => ${JSON.stringify(
+            auditLog.toJSON(),
+          )}`;
+          console.error(errorMessage); // NOSONAR - Unexpected console statement
         });
       }
     }
@@ -253,8 +241,7 @@ export function AuditRepositoryMixin<
       if (this.getCurrentUser) {
         const user = await this.getCurrentUser();
         const auditRepo = await this.getAuditLogRepository();
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const extras: any = Object.assign({}, opts); //NOSONAR
+        const extras: Omit<IAuditMixinOptions, 'actionKey'> = {...opts};
         delete extras.actionKey;
         const auditLog = new AuditLog({
           actedAt: new Date(),
@@ -269,11 +256,10 @@ export function AuditRepositoryMixin<
         });
 
         auditRepo.create(auditLog).catch(() => {
-          //sonarignore:start
-          console.error(
-            `Audit failed for data => ${JSON.stringify(auditLog.toJSON())}`,
-          );
-          //sonarignore:end
+          const errorMessage = `Audit failed for data => ${JSON.stringify(
+            auditLog.toJSON(),
+          )}`;
+          console.error(errorMessage); // NOSONAR - Unexpected console statement
         });
       }
     }
@@ -288,8 +274,7 @@ export function AuditRepositoryMixin<
       if (this.getCurrentUser) {
         const user = await this.getCurrentUser();
         const auditRepo = await this.getAuditLogRepository();
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const extras: any = Object.assign({}, opts); //NOSONAR
+        const extras: Omit<IAuditMixinOptions, 'actionKey'> = {...opts};
         delete extras.actionKey;
         const auditLog = new AuditLog({
           actedAt: new Date(),
@@ -303,11 +288,10 @@ export function AuditRepositoryMixin<
         });
 
         auditRepo.create(auditLog).catch(() => {
-          //sonarignore:start
-          console.error(
-            `Audit failed for data => ${JSON.stringify(auditLog.toJSON())}`,
-          );
-          //sonarignore:end
+          const errorMessage = `Audit failed for data => ${JSON.stringify(
+            auditLog.toJSON(),
+          )}`;
+          console.error(errorMessage); // NOSONAR - Unexpected console statement
         });
       }
     }
@@ -328,8 +312,7 @@ export function AuditRepositoryMixin<
       if (this.getCurrentUser) {
         const user = await this.getCurrentUser();
         const auditRepo = await this.getAuditLogRepository();
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const extras: any = Object.assign({}, opts); //NOSONAR
+        const extras: Omit<IAuditMixinOptions, 'actionKey'> = {...opts};
         delete extras.actionKey;
         const audits = toDelete.map(
           data =>
@@ -346,11 +329,10 @@ export function AuditRepositoryMixin<
         );
         auditRepo.createAll(audits).catch(() => {
           const auditsJson = audits.map(a => a.toJSON());
-          //sonarignore:start
-          console.error(
-            `Audit failed for data => ${JSON.stringify(auditsJson)}`,
-          );
-          //sonarignore:end
+          const errorMessage = `Audit failed for data => ${JSON.stringify(
+            auditsJson,
+          )}`;
+          console.error(errorMessage); // NOSONAR - Unexpected console statement
         });
       }
       return deletedCount;
@@ -369,8 +351,7 @@ export function AuditRepositoryMixin<
       if (this.getCurrentUser) {
         const user = await this.getCurrentUser();
         const auditRepo = await this.getAuditLogRepository();
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const extras: any = Object.assign({}, opts); //NOSONAR
+        const extras: Omit<IAuditMixinOptions, 'actionKey'> = {...opts};
         delete extras.actionKey;
         const auditLog = new AuditLog({
           actedAt: new Date(),
@@ -384,21 +365,15 @@ export function AuditRepositoryMixin<
         });
 
         auditRepo.create(auditLog).catch(() => {
-          //sonarignore:start
-          console.error(
-            `Audit failed for data => ${JSON.stringify(auditLog.toJSON())}`,
-          );
-          //sonarignore:end
+          const errorMessage = `Audit failed for data => ${JSON.stringify(
+            auditLog.toJSON(),
+          )}`;
+          console.error(errorMessage); // NOSONAR - Unexpected console statement
         });
       }
     }
     getActor(user: User, optionsActorId?: string): string {
-      return (
-        optionsActorId ??
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (user[this.actorIdKey ?? 'id'] as any)?.toString() ?? //NOSOAR
-        '0'
-      );
+      return optionsActorId ?? user[this.actorIdKey ?? 'id']?.toString() ?? '0';
     }
   }
   return MixedRepository;
