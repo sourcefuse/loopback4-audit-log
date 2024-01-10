@@ -6,6 +6,7 @@ import {AuditRepositoryMixin} from './audit.mixin';
  * Apply AuditRepositoryMixin based on flag ADD_AUDIT_LOG_MIXIN
  */
 
+// NOSONAR -  ignore camelCase naming convention
 export function ConditionalAuditRepositoryMixin<
   T extends Entity,
   ID,
