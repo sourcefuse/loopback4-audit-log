@@ -60,7 +60,9 @@
     "@loopback/boot": "^6.1.5",
     "@loopback/core": "^5.1.5",
     "@loopback/repository": "^6.1.5",
+    "@loopback/rest": "^13.1.5",
     "@loopback/sequelize": "^0.5.4",
+    "@sourceloop/core": "file:../../2004/loopback4-microservice-catalog/packages/core/sourceloop-core-11.0.3.tgz",
     "jsdom": "^20.0.3",
     "lodash": "^4.17.21",
     "tslib": "^2.6.2"

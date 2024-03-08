@@ -63,13 +63,6 @@ export class AuditLog extends Entity {
   actor: string;
 
   @property({
-    name: 'tenant_id',
-    type: 'string',
-    required: true,
-  })
-  tenantId: string;
-
-  @property({
     type: 'object',
   })
   before?: object;

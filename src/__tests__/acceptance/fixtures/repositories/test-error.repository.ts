@@ -16,7 +16,7 @@ export const testAuditOpts: IAuditMixinOptions = {
   actionKey: 'Item_Logs',
 };
 
-export class TestRepository extends AuditRepositoryMixin<
+export class TestErrorRepository extends AuditRepositoryMixin<
   TestModel,
   typeof TestModel.prototype.id,
   TestModelRelations,
@@ -33,7 +33,7 @@ export class TestRepository extends AuditRepositoryMixin<
     @inject('datasources.test') dataSource: TestDataSource,
     @inject.getter('sf.userAuthentication.currentUser')
     public getCurrentUser: Getter<IAuthUserWithPermissions>,
-    @repository.getter('TestAuditLogRepository')
+    @repository.getter('TestAuditLogErrorRepository')
     public getAuditLogRepository: Getter<
       AuditLogRepository | SequelizeAuditLogRepository
     >,
