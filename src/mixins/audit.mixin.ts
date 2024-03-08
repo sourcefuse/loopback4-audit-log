@@ -6,7 +6,7 @@ import {
   Where,
 } from '@loopback/repository';
 import {cloneDeep, isArray, keyBy} from 'lodash';
-import {Action, AuditLog} from '../models';
+import {Action} from '../models';
 import {AuditLogRepository} from '../repositories';
 import {AuditLogRepository as SequelizeAuditLogRepository} from '../repositories/sequelize';
 import {
@@ -18,6 +18,7 @@ import {
   IAuditMixinOptions,
   User,
 } from '../types';
+import {AuditLog} from '../models';
 
 // NOSONAR -  ignore camelCase naming convention
 export function AuditRepositoryMixin<
@@ -59,7 +60,6 @@ export function AuditRepositoryMixin<
         entityId: entity.getId(),
         actedOn: this.entityClass.modelName,
         actionKey: opts.actionKey,
-        tenantId: user.tenantId,
         ...extras,
       });
     }
