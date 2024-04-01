@@ -1,16 +1,12 @@
-import {expect, sinon} from '@loopback/testlab';
+import {expect} from '@loopback/testlab';
 import {v4 as uuidv4} from 'uuid';
 import {Action} from '../..';
 import {TestAuditDataSource} from './fixtures/datasources/audit.datasource';
 import {TestDataSource} from './fixtures/datasources/test.datasource';
 import {TestModel} from './fixtures/models/test.model';
-import {TestAuditLogErrorRepository} from './fixtures/repositories/audit-error.repository';
-import {TestAuditLogRepository} from './fixtures/repositories/audit.repository';
-import {
-  testAuditOpts,
-  TestRepository,
-} from './fixtures/repositories/test.repository';
-import {mockUser} from '../unit/fixtures/mockData';
+import {testAuditOpts} from './fixtures/repositories/test.repository';
+import {DummyAuditServiceApplication} from './fixtures/dummy-application';
+import {getTestDBRepositories, testUser} from './fixtures/helper/db.helper';
 
 export let consoleMessage: string;
 console.error = (message: string) => {
@@ -18,27 +14,27 @@ console.error = (message: string) => {
 };
 
 describe('Audit Mixin', () => {
-  const testDataSourceInstance = new TestDataSource();
-  const getCurrentUser = sinon.stub().resolves(mockUser);
-  const auditLogRepositoryInstance = new TestAuditLogRepository(
-    new TestAuditDataSource(),
-  );
-  const actorIdKey = 'id';
-  const getAuditLogRepository = sinon
-    .stub()
-    .resolves(auditLogRepositoryInstance);
-  const testRepositoryInstance = new TestRepository(
-    testDataSourceInstance,
-    getCurrentUser,
-    getAuditLogRepository,
-    actorIdKey,
-  );
-
+  let app: DummyAuditServiceApplication;
   beforeEach(async () => {
-    await auditLogRepositoryInstance.deleteAll();
+    app = new DummyAuditServiceApplication({
+      rest: {
+        port: 3001,
+      },
+    });
+    app.bind('sf.userAuthentication.currentUser').to(testUser);
+    app.dataSource(TestAuditDataSource);
+    app.dataSource(TestDataSource);
+
+    await app.boot();
+    await app.start();
+  });
+  afterEach(async () => {
+    await app.stop();
   });
   it('should create audit log when new item is created', async () => {
     const mockItem = getMockItem();
+    const {auditLogRepositoryInstance, testRepositoryInstance} =
+      await getTestDBRepositories(app);
     const createMethodResponse = await testRepositoryInstance.create(mockItem);
     const auditLog = await auditLogRepositoryInstance.find();
     const storedRecords = await testRepositoryInstance.find({
@@ -53,7 +49,7 @@ describe('Audit Mixin', () => {
       actedOn: TestModel.name,
       actionKey: testAuditOpts.actionKey,
       entityId: mockItem.id,
-      actor: mockUser.id,
+      actor: testUser.id,
       before: undefined,
       after: {
         id: mockItem.id,
@@ -73,6 +69,9 @@ describe('Audit Mixin', () => {
 
   it('should not create audit log when options.noAudit is set to true on creating new item', async () => {
     const mockItem = getMockItem();
+
+    const {auditLogRepositoryInstance, testRepositoryInstance} =
+      await getTestDBRepositories(app);
     const createMethodResponse = await testRepositoryInstance.create(mockItem, {
       noAudit: true,
     });
@@ -94,6 +93,9 @@ describe('Audit Mixin', () => {
 
   it('should create audit log when new items are created on calling createAll', async () => {
     const mockItemArray = getMockItemArray();
+
+    const {auditLogRepositoryInstance, testRepositoryInstance} =
+      await getTestDBRepositories(app);
     const createMethodResponse =
       await testRepositoryInstance.createAll(mockItemArray);
     expect(createMethodResponse).to.match(mockItemArray);
@@ -121,7 +123,7 @@ describe('Audit Mixin', () => {
         actedOn: TestModel.name,
         actionKey: testAuditOpts.actionKey,
         entityId: mockItemArray[index].id,
-        actor: mockUser.id,
+        actor: testUser.id,
         before: undefined,
         after: mockItemArray[index],
       };
@@ -132,6 +134,9 @@ describe('Audit Mixin', () => {
 
   it('should not create audit log when options.noAudit is set to true on creating new items on calling createAll', async () => {
     const mockItemArray = getMockItemArray();
+
+    const {auditLogRepositoryInstance, testRepositoryInstance} =
+      await getTestDBRepositories(app);
     const createMethodResponse = await testRepositoryInstance.createAll(
       mockItemArray,
       {noAudit: true},
@@ -157,6 +162,9 @@ describe('Audit Mixin', () => {
   it('should create audit log when items are deleted on calling deleteAll', async () => {
     //create dummy data to be deleted
     const mockItemArray = getMockItemArray();
+
+    const {auditLogRepositoryInstance, testRepositoryInstance} =
+      await getTestDBRepositories(app);
     await createDummyDataFromArray(mockItemArray);
 
     const deleteAllMethodResponse = await testRepositoryInstance.deleteAll({
@@ -187,7 +195,7 @@ describe('Audit Mixin', () => {
         actedOn: TestModel.name,
         actionKey: testAuditOpts.actionKey,
         entityId: mockItemArray[index].id,
-        actor: mockUser.id,
+        actor: testUser.id,
         before: mockItemArray[index],
         after: undefined,
       };
@@ -198,6 +206,8 @@ describe('Audit Mixin', () => {
   it('should not create audit log when options.noAudit is set to true on deleteing new items on calling deleteAll', async () => {
     //create dummy data to be deleted
     const mockItemArray = getMockItemArray();
+    const {auditLogRepositoryInstance, testRepositoryInstance} =
+      await getTestDBRepositories(app);
     await createDummyDataFromArray(mockItemArray);
 
     const deleteAllMethodResponse = await testRepositoryInstance.deleteAll(
@@ -227,6 +237,8 @@ describe('Audit Mixin', () => {
   it('should create audit log for deleted item on calling deleteById', async () => {
     //create dummy data to be deleted
     const mockItem = getMockItem();
+    const {auditLogRepositoryInstance, testRepositoryInstance} =
+      await getTestDBRepositories(app);
     await createDummyData(mockItem);
 
     await testRepositoryInstance.deleteById(mockItem.id);
@@ -244,7 +256,7 @@ describe('Audit Mixin', () => {
       actedOn: TestModel.name,
       actionKey: testAuditOpts.actionKey,
       entityId: mockItem.id,
-      actor: mockUser.id,
+      actor: testUser.id,
       before: mockItem,
       after: undefined,
     };
@@ -256,6 +268,8 @@ describe('Audit Mixin', () => {
     //create dummy data to be deleted
     const mockItem = getMockItem();
     await createDummyData(mockItem);
+    const {auditLogRepositoryInstance, testRepositoryInstance} =
+      await getTestDBRepositories(app);
 
     await testRepositoryInstance.deleteById(mockItem.id, {noAudit: true});
 
@@ -273,6 +287,8 @@ describe('Audit Mixin', () => {
   it('should create audit log for replaced item on calling replaceById', async () => {
     //create dummy data to be replaced
     const mockItem = getMockItem();
+    const {auditLogRepositoryInstance, testRepositoryInstance} =
+      await getTestDBRepositories(app);
     await createDummyData(mockItem);
 
     await testRepositoryInstance.replaceById(mockItem.id, {
@@ -298,7 +314,7 @@ describe('Audit Mixin', () => {
       actedOn: TestModel.name,
       actionKey: testAuditOpts.actionKey,
       entityId: mockItem.id,
-      actor: mockUser.id,
+      actor: testUser.id,
       before: mockItem,
       after: {
         id: mockItem.id,
@@ -313,6 +329,8 @@ describe('Audit Mixin', () => {
   it('should not create audit log for replaced item when options.noAudit is set on calling replaceById', async () => {
     //create dummy data to be replaced
     const mockItem = getMockItem();
+    const {auditLogRepositoryInstance, testRepositoryInstance} =
+      await getTestDBRepositories(app);
     await createDummyData(mockItem);
 
     await testRepositoryInstance.replaceById(
@@ -339,6 +357,8 @@ describe('Audit Mixin', () => {
   it('should create audit log for updated item on calling updateById', async () => {
     //create dummy data to be updated
     const mockItem = getMockItem();
+    const {auditLogRepositoryInstance, testRepositoryInstance} =
+      await getTestDBRepositories(app);
     await createDummyData(mockItem);
 
     await testRepositoryInstance.updateById(mockItem.id, {
@@ -364,7 +384,7 @@ describe('Audit Mixin', () => {
       actedOn: TestModel.name,
       actionKey: testAuditOpts.actionKey,
       entityId: mockItem.id,
-      actor: mockUser.id,
+      actor: testUser.id,
       before: mockItem,
       after: {
         id: mockItem.id,
@@ -380,6 +400,8 @@ describe('Audit Mixin', () => {
   it('should not create audit log for updated item when options.noAudit is set on calling updateById', async () => {
     //create dummy data to be replaced
     const mockItem = getMockItem();
+    const {auditLogRepositoryInstance, testRepositoryInstance} =
+      await getTestDBRepositories(app);
     await createDummyData(mockItem);
 
     await testRepositoryInstance.updateById(
@@ -407,6 +429,8 @@ describe('Audit Mixin', () => {
     //create dummy data to be updated
     const mockItemArray = getMockItemArray();
     await createDummyDataFromArray(mockItemArray);
+    const {auditLogRepositoryInstance, testRepositoryInstance} =
+      await getTestDBRepositories(app);
 
     await testRepositoryInstance.updateAll(
       {itemName: 'replacedTestItem', description: 'replacedTestDescription'},
@@ -439,7 +463,7 @@ describe('Audit Mixin', () => {
         actedOn: TestModel.name,
         actionKey: testAuditOpts.actionKey,
         entityId: mockItemArray[index].id,
-        actor: mockUser.id,
+        actor: testUser.id,
         before: mockItemArray[index],
         after: {
           id: mockItemArray[index].id,
@@ -455,6 +479,8 @@ describe('Audit Mixin', () => {
     //create dummy data to be updated
     const mockItemArray = getMockItemArray();
     await createDummyDataFromArray(mockItemArray);
+    const {auditLogRepositoryInstance, testRepositoryInstance} =
+      await getTestDBRepositories(app);
 
     await testRepositoryInstance.updateAll(
       {itemName: 'replacedTestItem', description: 'replacedTestDescription'},
@@ -483,24 +509,17 @@ describe('Audit Mixin', () => {
     expect(auditLog.length).to.equal(0);
   });
 
-  const auditLogErrorRepositoryInstance = new TestAuditLogErrorRepository();
-  const auditLogErrorRepository = sinon
-    .stub()
-    .resolves(auditLogErrorRepositoryInstance); //repository which will cause catch statements to execute
-  const testRepositoryAuditLogErrorInstance = new TestRepository(
-    testDataSourceInstance,
-    getCurrentUser,
-    auditLogErrorRepository,
-  );
-
   it(`should log appropriate message when audit log can't be created on calling create method`, async () => {
     const mockItem = getMockItem();
+
+    const {testRepositoryAuditLogErrorInstance} =
+      await getTestDBRepositories(app);
     await testRepositoryAuditLogErrorInstance.create(mockItem);
 
     const expectedConsoleMessageValues = [
       `Audit failed for data =>`,
       `"actedAt":`,
-      `"actor":"${mockUser.id}"`,
+      `"actor":"${testUser.id}"`,
       `"action":"${Action.INSERT_ONE}"`,
       `"after":`,
       `"id":`,
@@ -516,12 +535,14 @@ describe('Audit Mixin', () => {
   });
   it(`should log appropriate message when audit log can't be created on calling createAll method`, async () => {
     const mockItemArray = getMockItemArray();
+    const {testRepositoryAuditLogErrorInstance} =
+      await getTestDBRepositories(app);
     await testRepositoryAuditLogErrorInstance.createAll(mockItemArray);
 
     const expectedConsoleMessageValues = [
       `Audit failed for data =>`,
       `"actedAt":`,
-      `"actor":"${mockUser.id}"`,
+      `"actor":"${testUser.id}"`,
       `"action":"${Action.INSERT_MANY}"`,
       `"after":`,
       `"id":`,
@@ -538,6 +559,8 @@ describe('Audit Mixin', () => {
   it(`should log appropriate message when audit log can't be created on calling deleteAll method`, async () => {
     //create dummy data to be deleted
     const mockItemArray = getMockItemArray();
+    const {testRepositoryAuditLogErrorInstance} =
+      await getTestDBRepositories(app);
     await createDummyDataFromArrayFalse(mockItemArray);
 
     await testRepositoryAuditLogErrorInstance.deleteAll({
@@ -549,7 +572,7 @@ describe('Audit Mixin', () => {
     const expectedConsoleMessageValues = [
       `Audit failed for data =>`,
       `"actedAt":`,
-      `"actor":"${mockUser.id}"`,
+      `"actor":"${testUser.id}"`,
       `"action":"${Action.DELETE_MANY}"`,
       `"before":`,
       `"id":`,
@@ -567,6 +590,8 @@ describe('Audit Mixin', () => {
   it(`should log appropriate message when audit log can't be created on calling updateAll method`, async () => {
     //create dummy data to be updated
     const mockItemArray = getMockItemArray();
+    const {testRepositoryAuditLogErrorInstance} =
+      await getTestDBRepositories(app);
     await createDummyDataFromArrayFalse(mockItemArray);
 
     await testRepositoryAuditLogErrorInstance.updateAll(
@@ -581,7 +606,7 @@ describe('Audit Mixin', () => {
     const expectedConsoleMessageValues = [
       `Audit failed for data =>`,
       `"actedAt":`,
-      `"actor":"${mockUser.id}"`,
+      `"actor":"${testUser.id}"`,
       `"action":"${Action.UPDATE_MANY}"`,
       `"before":`,
       `"after":`,
@@ -602,6 +627,8 @@ describe('Audit Mixin', () => {
     const mockItem = getMockItem();
     await createDummyDataFalse(mockItem);
 
+    const {testRepositoryAuditLogErrorInstance} =
+      await getTestDBRepositories(app);
     await testRepositoryAuditLogErrorInstance.updateById(mockItem.id, {
       itemName: 'replacedTestItem',
       description: 'replacedTestDescription',
@@ -610,7 +637,7 @@ describe('Audit Mixin', () => {
     const expectedConsoleMessageValues = [
       `Audit failed for data =>`,
       `"actedAt":`,
-      `"actor":"${mockUser.id}"`,
+      `"actor":"${testUser.id}"`,
       `"action":"${Action.UPDATE_ONE}"`,
       `"before":`,
       `"after":`,
@@ -629,6 +656,8 @@ describe('Audit Mixin', () => {
     //create dummy data to be replaced
     const mockItem = getMockItem();
     await createDummyDataFalse(mockItem);
+    const {testRepositoryAuditLogErrorInstance} =
+      await getTestDBRepositories(app);
 
     await testRepositoryAuditLogErrorInstance.replaceById(mockItem.id, {
       itemName: 'replacedTestItem',
@@ -638,7 +667,7 @@ describe('Audit Mixin', () => {
     const expectedConsoleMessageValues = [
       `Audit failed for data =>`,
       `"actedAt":`,
-      `"actor":"${mockUser.id}"`,
+      `"actor":"${testUser.id}"`,
       `"action":"${Action.UPDATE_ONE}"`,
       `"before":`,
       `"after":`,
@@ -655,6 +684,8 @@ describe('Audit Mixin', () => {
   });
   it(`should log appropriate message when audit log can't be created on calling deleteById method`, async () => {
     //create dummy data to be deleted
+    const {testRepositoryAuditLogErrorInstance} =
+      await getTestDBRepositories(app);
     const mockItem = getMockItem();
     await createDummyDataFalse(mockItem);
 
@@ -663,7 +694,7 @@ describe('Audit Mixin', () => {
     const expectedConsoleMessageValues = [
       `Audit failed for data =>`,
       `"actedAt":`,
-      `"actor":"${mockUser.id}"`,
+      `"actor":"${testUser.id}"`,
       `"action":"${Action.DELETE_ONE}"`,
       `"before":`,
       `"id":`,
@@ -682,6 +713,8 @@ describe('Audit Mixin', () => {
   async function createDummyDataFromArrayFalse(
     mockItemArray: {id: string; itemName: string; description: string}[],
   ) {
+    const {testRepositoryAuditLogErrorInstance} =
+      await getTestDBRepositories(app);
     await testRepositoryAuditLogErrorInstance.createAll(mockItemArray, {
       noAudit: true,
     });
@@ -691,12 +724,15 @@ describe('Audit Mixin', () => {
     itemName: string;
     description: string;
   }) {
+    const {testRepositoryAuditLogErrorInstance} =
+      await getTestDBRepositories(app);
     await testRepositoryAuditLogErrorInstance.create(mockItem, {noAudit: true});
   }
 
   async function createDummyDataFromArray(
     mockItemArray: {id: string; itemName: string; description: string}[],
   ) {
+    const {testRepositoryInstance} = await getTestDBRepositories(app);
     await testRepositoryInstance.createAll(mockItemArray, {noAudit: true});
   }
   async function createDummyData(mockItem: {
@@ -704,6 +740,7 @@ describe('Audit Mixin', () => {
     itemName: string;
     description: string;
   }) {
+    const {testRepositoryInstance} = await getTestDBRepositories(app);
     await testRepositoryInstance.create(mockItem, {noAudit: true});
   }
   function getMockItem() {
