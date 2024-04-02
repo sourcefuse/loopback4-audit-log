@@ -66,21 +66,16 @@ export type AuditMixinBase<T extends Entity, ID, Relations> = MixinBaseClass<{
 }>;
 
 export interface User<ID = string, TID = string, UTID = string> {
-  id?: string;
-  username: string;
-  password?: string;
+  id?: string | number;
+  username?: string;
   identifier?: ID;
-  permissions: string[];
-  authClientId: number;
   email?: string;
-  role: string;
-  firstName: string;
-  lastName: string;
+  role?: string;
+  firstName?: string;
+  lastName?: string;
   middleName?: string;
   tenantId?: TID;
   userTenantId?: UTID;
-  passwordExpiryTime?: Date;
-  allowedResources?: string[];
 }
 
 export type ActorId = Extract<keyof User, string>;
