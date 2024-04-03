@@ -1,6 +1,6 @@
 import {expect, sinon} from '@loopback/testlab';
 import {v4 as uuidv4} from 'uuid';
-import {Action, User} from '../..';
+import {Action} from '../..';
 import {TestAuditDataSource} from './fixtures/datasources/audit.datasource';
 import {TestDataSource} from './fixtures/datasources/test.datasource';
 import {TestModel} from './fixtures/models/test.model';
@@ -10,22 +10,11 @@ import {
   testAuditOpts,
   TestRepository,
 } from './fixtures/repositories/test.repository';
+import {mockUser} from '../unit/fixtures/mockData';
 
 export let consoleMessage: string;
 console.error = (message: string) => {
   consoleMessage = message;
-};
-
-const mockUser: User = {
-  id: 'testCurrentUserId',
-  username: 'testCurrentUserName',
-  authClientId: 123,
-  permissions: ['1', '2', '3'],
-  role: 'admin',
-  firstName: 'test',
-  lastName: 'lastname',
-  tenantId: 'tenantId',
-  userTenantId: 'userTenantId',
 };
 
 describe('Audit Mixin', () => {
