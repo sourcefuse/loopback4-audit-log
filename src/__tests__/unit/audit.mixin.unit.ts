@@ -53,8 +53,6 @@ const mockOpts: IAuditMixinOptions = {
 const mockUser: User = {
   id: 'testCurrentUserId',
   username: 'testCurrentUserName',
-  authClientId: 123,
-  permissions: ['1', '2', '3'],
   role: 'admin',
   firstName: 'test',
   lastName: 'lastname',
