@@ -1,3 +1,4 @@
+import {User} from '../../../types';
 import {MockModel} from './mockModel';
 
 export const mockData: MockModel = {
@@ -24,6 +25,16 @@ export const mockData: MockModel = {
       description: this.description,
     };
   },
+};
+
+export const mockUser: User = {
+  id: 'testCurrentUserId',
+  username: 'testCurrentUserName',
+  role: 'admin',
+  firstName: 'test',
+  lastName: 'lastname',
+  tenantId: 'tenantId',
+  userTenantId: 'userTenantId',
 };
 
 export const mockDataArray: MockModel[] = [

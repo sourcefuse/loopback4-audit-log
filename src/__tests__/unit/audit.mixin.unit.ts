@@ -6,7 +6,6 @@ import {
   AuditLog,
   AuditRepositoryMixin,
   IAuditMixinOptions,
-  User,
 } from '../..';
 import {consoleMessage} from '../acceptance/audit.mixin.acceptance';
 import {
@@ -15,7 +14,12 @@ import {
   optionsReceivedByParentRepository,
   resetMethodCalls,
 } from './fixtures/mockClass';
-import {mockData, mockDataArray, resetMockData} from './fixtures/mockData';
+import {
+  mockData,
+  mockDataArray,
+  mockUser,
+  resetMockData,
+} from './fixtures/mockData';
 import {MockModel} from './fixtures/mockModel';
 
 let auditData: AuditLog;
@@ -49,15 +53,6 @@ class MockAuditRepoError {
 
 const mockOpts: IAuditMixinOptions = {
   actionKey: 'Test_Logs',
-};
-const mockUser: User = {
-  id: 'testCurrentUserId',
-  username: 'testCurrentUserName',
-  role: 'admin',
-  firstName: 'test',
-  lastName: 'lastname',
-  tenantId: 'tenantId',
-  userTenantId: 'userTenantId',
 };
 
 describe('Audit Mixin', () => {
