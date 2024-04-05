@@ -19,6 +19,7 @@ import {
   User,
 } from '../types';
 
+
 // NOSONAR -  ignore camelCase naming convention
 export function AuditRepositoryMixin<
   M extends Entity,
@@ -59,7 +60,6 @@ export function AuditRepositoryMixin<
         entityId: entity.getId(),
         actedOn: this.entityClass.modelName,
         actionKey: opts.actionKey,
-        tenantId: user.tenantId,
         ...extras,
       });
     }
