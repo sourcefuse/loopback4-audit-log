@@ -6,13 +6,13 @@ import {BootMixin} from '@loopback/boot';
 import {ApplicationConfig} from '@loopback/core';
 import {RepositoryMixin} from '@loopback/repository';
 import {RestApplication} from '@loopback/rest';
-import {AuditLogComponent} from '@sourceloop/audit-log';
 import {TenantUtilitiesBindings} from '@sourceloop/core';
 import * as path from 'path';
 import {TestRepository} from './repositories/test.repository';
 import {AuditLogRepository} from '../../../repositories';
 import {TestAuditLogErrorRepository} from './repositories/audit-error.repository';
 import {TestErrorRepository} from './repositories/test-error.repository';
+import {AuditLogComponent} from '../../../component';
 
 export {ApplicationConfig};
 

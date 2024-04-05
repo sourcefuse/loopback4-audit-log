@@ -19,7 +19,6 @@ import {
   User,
 } from '../types';
 
-
 // NOSONAR -  ignore camelCase naming convention
 export function AuditRepositoryMixin<
   M extends Entity,
