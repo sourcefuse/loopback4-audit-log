@@ -1,3 +1,30 @@
+## Release [v8.0.1](https://github.com/sourcefuse/loopback4-audit-log/compare/v8.0.0..v8.0.1) May 15, 2024
+Welcome to the May 15, 2024 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
+
+  - [Generate Changelog](https://github.com/sourcefuse/loopback4-audit-log/issues/118) :- [fix(ci-cd): rectify the remote origin ](https://github.com/sourcefuse/loopback4-audit-log/commit/c3452b16645dc2e5045d4be535c3aecc26af8ac0) was commited on May 15, 2024 by [yeshamavani](mailto:83634146+yeshamavani@users.noreply.github.com)
+    
+      - change the remote origin in release workflow
+      
+      -  GH-118
+      
+  
+  - [Generate Changelog](https://github.com/sourcefuse/loopback4-audit-log/issues/118) :- [fix(ci-cd): add step to generate changelog ](https://github.com/sourcefuse/loopback4-audit-log/commit/53fa94d153605c40ffe4dfb6c9a982d72e0b8b09) was commited on May 15, 2024 by [yeshamavani](mailto:83634146+yeshamavani@users.noreply.github.com)
+    
+      - after release generate changelog
+      
+      -  GH-118
+      
+  
+  - [Copy the Readme to root as well](https://github.com/sourcefuse/loopback4-audit-log/issues/116) :- [docs(chore): copy the Readme to root as well ](https://github.com/sourcefuse/loopback4-audit-log/commit/5bb6be82aa53652baf44807dc97105c6f0d56657) was commited on May 13, 2024 by [arpit1503khanna](mailto:108673359+arpit1503khanna@users.noreply.github.com)
+    
+      - copy the Readme to root as well
+      
+      -  GH-116
+      
+  
+Clink on the above links to understand the changes in detail.
+  ___
+
 ## Release [v5.2.0](https://github.com/sourcefuse/loopback4-audit-log/compare/v5.1.2..v5.2.0) August 7, 2023
 Welcome to the August 7, 2023 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
 
