@@ -1,5 +1,3 @@
-import {AuditLogRepository} from './repositories';
-import {AuditLogRepository as SequelizeAuditLogRepository} from './repositories/sequelize';
 import {
   Count,
   DataObject,
@@ -12,10 +10,8 @@ import {
 
 export const AuditDbSourceName = 'AuditDB';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export interface IAuditMixin<UserID> {
-  getAuditLogRepository: () => Promise<
-    AuditLogRepository | SequelizeAuditLogRepository
-  >;
+export interface IAuditMixin<UserID, Repo> {
+  getAuditLogRepository: () => Promise<Repo>;
   getCurrentUser?: () => Promise<User>;
   actorIdKey?: ActorId;
 }

@@ -1,6 +1,5 @@
 import {Constructor, Getter, inject} from '@loopback/core';
 import {DefaultCrudRepository, repository} from '@loopback/repository';
-
 import {
   AuditLogRepository,
   AuditRepositoryMixin,
@@ -8,14 +7,11 @@ import {
 } from '../../../..';
 import {TestDataSource} from '../datasources/test.datasource';
 import {TestModel, TestModelRelations} from '../models/test.model';
-
-import {AuditLogRepository as SequelizeAuditLogRepository} from '../../../../repositories/sequelize';
 import {IAuthUserWithPermissions} from '@sourceloop/core';
 
 export const testAuditOpts: IAuditMixinOptions = {
   actionKey: 'Item_Logs',
 };
-
 export class TestErrorRepository extends AuditRepositoryMixin<
   TestModel,
   typeof TestModel.prototype.id,
@@ -34,9 +30,7 @@ export class TestErrorRepository extends AuditRepositoryMixin<
     @inject.getter('sf.userAuthentication.currentUser')
     public getCurrentUser: Getter<IAuthUserWithPermissions>,
     @repository.getter('TestAuditLogErrorRepository')
-    public getAuditLogRepository: Getter<
-      AuditLogRepository | SequelizeAuditLogRepository
-    >,
+    public getAuditLogRepository: Getter<AuditLogRepository>,
   ) {
     super(TestModel, dataSource);
   }

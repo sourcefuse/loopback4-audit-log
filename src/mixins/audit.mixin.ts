@@ -2,13 +2,13 @@ import {
   AnyObject,
   Count,
   DataObject,
+  DefaultCrudRepository,
   Entity,
   Where,
 } from '@loopback/repository';
 import {cloneDeep, isArray, keyBy} from 'lodash';
 import {Action, AuditLog} from '../models';
 import {AuditLogRepository} from '../repositories';
-import {AuditLogRepository as SequelizeAuditLogRepository} from '../repositories/sequelize';
 import {
   AbstractConstructor,
   ActorId,
@@ -18,6 +18,7 @@ import {
   IAuditMixinOptions,
   User,
 } from '../types';
+import {SequelizeCrudRepository} from '@loopback/sequelize';
 
 // NOSONAR -  ignore camelCase naming convention
 export function AuditRepositoryMixin<
@@ -26,17 +27,23 @@ export function AuditRepositoryMixin<
   Relations extends object,
   UserID,
   R extends AuditMixinBase<M, ID, Relations>,
+  LogModel extends AuditLog = AuditLog,
+  Repo extends
+    | DefaultCrudRepository<LogModel, typeof AuditLog.prototype.id, {}>
+    | SequelizeCrudRepository<
+        LogModel,
+        typeof AuditLog.prototype.id,
+        {}
+      > = AuditLogRepository<LogModel>,
 >(
   superClass: R,
   opts: IAuditMixinOptions,
-): R & AbstractConstructor<IAuditMixin<UserID>> {
+): R & AbstractConstructor<IAuditMixin<UserID, Repo>> {
   abstract class MixedRepository
     extends superClass
-    implements IAuditMixin<UserID>
+    implements IAuditMixin<UserID, Repo>
   {
-    getAuditLogRepository: () => Promise<
-      AuditLogRepository | SequelizeAuditLogRepository
-    >;
+    getAuditLogRepository: () => Promise<Repo>;
     getCurrentUser?: () => Promise<User>;
     actorIdKey?: ActorId;
 
