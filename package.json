@@ -65,7 +65,7 @@
     "@sourceloop/core": "^14.0.0",
     "jsdom": "^20.0.3",
     "lodash": "^4.17.21",
-    "tslib": "^2.6.2"
+    "tslib": "^2.6.3"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.7.1",
