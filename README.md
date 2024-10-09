@@ -187,8 +187,7 @@ import {Group, GroupRelations} from '../models';
 import {PgdbDataSource} from '../datasources';
 import {inject, Getter, Constructor} from '@loopback/core';
 import {AuthenticationBindings, IAuthUser} from 'loopback4-authentication';
-import {AuditRepositoryMixin} from '@sourceloop/audit-log';
-import {AuditLogRepository} from './audit-log.repository';
+import {AuditRepositoryMixin, AuditLogRepository} from '@sourceloop/audit-log';
 
 const groupAuditOpts: IAuditMixinOptions = {
   actionKey: 'Group_Logs',
