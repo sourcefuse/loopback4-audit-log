@@ -409,7 +409,7 @@ Also add the following to your application.ts file to bind the Sequelize reposit
 
 ```ts
 import {AuditLog} from '@sourceloop/auidt-log/';
-import {AuditLogRepository} from '@sourceloop/auidt-log/sequelize';
+import {AuditLogRepository} from '@sourceloop/audit-log/sequelize';
 
 this.repositories = [AuditLogRepository<AuditLog>];
 ```
