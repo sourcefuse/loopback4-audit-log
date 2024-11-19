@@ -60,7 +60,7 @@
     "@loopback/boot": "^7.0.2",
     "@loopback/core": "^6.0.2",
     "@loopback/repository": "^7.0.2",
-    "@loopback/rest": "^14.0.2",
+    "@loopback/rest": "^14.0.8",
     "@loopback/sequelize": "^0.6.2",
     "@sourceloop/core": "^14.0.0",
     "jsdom": "^20.0.3",
