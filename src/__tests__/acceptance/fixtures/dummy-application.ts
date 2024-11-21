@@ -9,10 +9,10 @@ import {RestApplication} from '@loopback/rest';
 import {TenantUtilitiesBindings} from '@sourceloop/core';
 import * as path from 'path';
 import {TestRepository} from './repositories/test.repository';
-import {AuditLogRepository} from '../../../repositories';
 import {TestAuditLogErrorRepository} from './repositories/audit-error.repository';
 import {TestErrorRepository} from './repositories/test-error.repository';
 import {AuditLogComponent} from '../../../component';
+import {TestAuditLogRepository} from './repositories/audit.repository';
 
 export {ApplicationConfig};
 
@@ -29,7 +29,7 @@ export class DummyAuditServiceApplication extends BootMixin(
 
     this.component(AuditLogComponent);
 
-    this.repository(AuditLogRepository);
+    this.repository(TestAuditLogRepository);
     this.repository(TestRepository);
     this.repository(TestAuditLogErrorRepository);
     this.repository(TestErrorRepository);
