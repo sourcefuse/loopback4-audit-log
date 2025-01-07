@@ -1,3 +1,24 @@
+## Release [v8.0.5](https://github.com/sourcefuse/loopback4-audit-log/compare/v8.0.4..v8.0.5) January 7, 2025
+Welcome to the January 7, 2025 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
+
+  - [Dynamic values to pass to extra fields.](https://github.com/sourcefuse/loopback4-audit-log/issues/141) :- [fix(mixin): pass the extra values via options ](https://github.com/sourcefuse/loopback4-audit-log/commit/6c5f6369f09abb2a847d70d7bcea895c12029b81) was commited on January 7, 2025 by [yeshamavani](mailto:83634146+yeshamavani@users.noreply.github.com)
+    
+      - * fix(mixin): pass the extra values via options
+      
+      -  dynamically pass extra values to add to audit log model
+      
+      -  GH-141
+      
+      - * fix(ci-cd): updated the documentation
+      
+      -  update the readme
+      
+      -  GH-141
+      
+  
+Clink on the above links to understand the changes in detail.
+  ___
+
 ## Release [v8.0.4](https://github.com/sourcefuse/loopback4-audit-log/compare/v8.0.3..v8.0.4) December 20, 2024
 Welcome to the December 20, 2024 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
 
