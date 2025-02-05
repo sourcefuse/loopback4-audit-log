@@ -59,7 +59,7 @@
   "dependencies": {
     "@loopback/boot": "^7.0.9",
     "@loopback/core": "^6.1.6",
-    "@loopback/repository": "^7.0.9",
+    "@loopback/repository": "^7.0.10",
     "@loopback/rest": "^14.0.9",
     "@loopback/sequelize": "^0.6.9",
     "@sourceloop/core": "^15.0.1",
