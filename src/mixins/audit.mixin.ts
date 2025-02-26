@@ -55,6 +55,7 @@ export function AuditRepositoryMixin<
       };
       delete extras.actionKey;
       delete extras.noAudit;
+      delete extras.transaction;
       return new AuditLog({
         actedAt: new Date(),
         actor: this.getActor(user, options?.actorId),
