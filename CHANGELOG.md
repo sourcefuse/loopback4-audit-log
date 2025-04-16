@@ -1,3 +1,74 @@
+## Release [v8.0.5](https://github.com/sourcefuse/loopback4-audit-log/compare/v8.0.4..v8.0.5) January 7, 2025
+Welcome to the January 7, 2025 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
+
+  - [Dynamic values to pass to extra fields.](https://github.com/sourcefuse/loopback4-audit-log/issues/141) :- [fix(mixin): pass the extra values via options ](https://github.com/sourcefuse/loopback4-audit-log/commit/6c5f6369f09abb2a847d70d7bcea895c12029b81) was commited on January 7, 2025 by [yeshamavani](mailto:83634146+yeshamavani@users.noreply.github.com)
+    
+      - * fix(mixin): pass the extra values via options
+      
+      -  dynamically pass extra values to add to audit log model
+      
+      -  GH-141
+      
+      - * fix(ci-cd): updated the documentation
+      
+      -  update the readme
+      
+      -  GH-141
+      
+  
+Clink on the above links to understand the changes in detail.
+  ___
+
+## Release [v8.0.4](https://github.com/sourcefuse/loopback4-audit-log/compare/v8.0.3..v8.0.4) December 20, 2024
+Welcome to the December 20, 2024 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
+
+  - [](https://github.com/sourcefuse/loopback4-audit-log/issues/) :- [chore(deps): core version update ](https://github.com/sourcefuse/loopback4-audit-log/commit/67598e5e53cf7dcba87edd0e97ac54d74445c912) was commited on December 20, 2024 by [Sunny Tyagi](mailto:107617248+Tyagi-Sunny@users.noreply.github.com)
+    
+      - * chore(deps): core version update
+      
+      -  core version update
+      
+      -  gh-0
+      
+      - * chore(deps): core update
+      
+      -  core update
+      
+      -  0
+      
+      - * chore(deps): jsdom update
+      
+      -  jsdom update
+      
+      -  0
+      
+  
+Clink on the above links to understand the changes in detail.
+  ___
+
+## Release [v8.0.3](https://github.com/sourcefuse/loopback4-audit-log/compare/v8.0.2..v8.0.3) December 17, 2024
+Welcome to the December 17, 2024 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
+
+  - [](https://github.com/sourcefuse/loopback4-audit-log/issues/) :- [chore(deps): version ](https://github.com/sourcefuse/loopback4-audit-log/commit/005f099e66a34792686a87c516e5174991e81b1c) was commited on December 17, 2024 by [Sunny Tyagi](mailto:107617248+Tyagi-Sunny@users.noreply.github.com)
+    
+      - version
+      
+      -  gh-0
+      
+  
+  - [Add sonar and synk badges](https://github.com/sourcefuse/loopback4-audit-log/issues/96) :- [docs(chore): update the sonar and synk badges ](https://github.com/sourcefuse/loopback4-audit-log/commit/3a18394a0f1d7cf9c6a26d95a1e895647b7b4316) was commited on November 8, 2024 by [yeshamavani](mailto:83634146+yeshamavani@users.noreply.github.com)
+    
+      - update the readme file in docs folder as well
+      
+      -  GH-96
+      
+  
+  - [](https://github.com/sourcefuse/loopback4-audit-log/issues/) :- [chore(docs): update the readme file ](https://github.com/sourcefuse/loopback4-audit-log/commit/a8db7bfda89ae692162b434bea6218528c5d5e7b) was commited on October 9, 2024 by [Muhammad Aaqil](mailto:aaqilcs102@gmail.com)
+    
+  
+Clink on the above links to understand the changes in detail.
+  ___
+
 ## Release [v8.0.2](https://github.com/sourcefuse/loopback4-audit-log/compare/v8.0.1..v8.0.2) June 4, 2024
 Welcome to the June 4, 2024 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
 

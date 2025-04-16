@@ -55,8 +55,14 @@ export function AuditRepositoryMixin<
       options?: AuditOptions,
     ): AuditLog {
       const {before, after} = modification;
-      const extras: Omit<IAuditMixinOptions, 'actionKey'> = {...opts};
+      //dynamic will take precedence over static
+      const extras: AnyObject = {
+        ...opts, // passing options to the model helps in adding custom and static values to it if needed
+        ...options, // passing options to the model helps in adding custom and dynamic values to it if needed
+      };
       delete extras.actionKey;
+      delete extras.noAudit;
+      delete extras.transaction;
       return new AuditLog({
         actedAt: new Date(),
         actor: this.getActor(user, options?.actorId),
