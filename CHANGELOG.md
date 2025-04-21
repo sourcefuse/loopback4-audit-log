@@ -1,3 +1,39 @@
+## Release [v8.0.6](https://github.com/sourcefuse/loopback4-audit-log/compare/v8.0.5..v8.0.6) April 21, 2025
+Welcome to the April 21, 2025 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
+
+  - [](https://github.com/sourcefuse/loopback4-audit-log/issues/) :- [fix(core): make model and respository customizable ](https://github.com/sourcefuse/loopback4-audit-log/commit/661372d9b683bc0bff4e503540e3f2bcaced4c81) was commited on April 21, 2025 by [yeshamavani](mailto:83634146+yeshamavani@users.noreply.github.com)
+    
+      - * fix(core): make model and resposiory customizable
+      
+      - now user can use the default as well as their custom respository
+      
+      - GH-121
+      
+      - * fix(core): readme in docs folder also updated
+      
+      - both the readme have to be in sync
+      
+      - GH-121
+      
+      - * feat(mixin): make model and repository customizable
+      
+      - update the docs
+      
+      - GH-121
+      
+      - ---------
+      
+      - Co-authored-by: Abir Ganguly &lt;abir.ganguly@sourcefuse.com&gt;
+      
+  
+  - [](https://github.com/sourcefuse/loopback4-audit-log/issues/148) :- [fix(mixin): remove transaction from options before audit log ](https://github.com/sourcefuse/loopback4-audit-log/commit/b0bf0712354f4554463d2b923ba806020e088620) was commited on March 6, 2025 by [Sahil-SF](mailto:138437395+sf-sahil-jassal@users.noreply.github.com)
+    
+      - GH-148
+      
+  
+Clink on the above links to understand the changes in detail.
+  ___
+
 ## Release [v8.0.5](https://github.com/sourcefuse/loopback4-audit-log/compare/v8.0.4..v8.0.5) January 7, 2025
 Welcome to the January 7, 2025 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
 
