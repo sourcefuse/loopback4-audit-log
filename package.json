@@ -23,7 +23,7 @@
     }
   },
   "engines": {
-    "node": ">=18"
+     "node": ">=18 <=22.x"
   },
   "repository": {
     "type": "git",
