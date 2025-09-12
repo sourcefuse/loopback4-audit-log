@@ -1,3 +1,32 @@
+## Release [v9.0.0](https://github.com/sourcefuse/loopback4-audit-log/compare/v8.0.6..v9.0.0) September 12, 2025
+Welcome to the September 12, 2025 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
+
+  - [](https://github.com/sourcefuse/loopback4-audit-log/issues/) :- [refactor(chore): loopback packages version upgrade ](https://github.com/sourcefuse/loopback4-audit-log/commit/f7fc8669586a6b3b24177bb1a9bf4e5901e33fa6) was commited on September 12, 2025 by [Vaibhav Bhalla](mailto:vaibhav.bhalla@sourcefuse.com)
+    
+      - * refactor(chore): loopback packages version upgrade
+      
+      - version upgrade
+      
+      - BREAKING CHANGE: YES
+      
+      - GH-153
+      
+      - * refactor(chore): version upgrade
+      
+      - loopback packages version upgrade
+      
+      - BREAKING CHANGE: YES
+      
+      - GH-153
+      
+      - ---------
+      
+      - Co-authored-by: Vaibhav  Bhalla &lt;vaibhav.bhalla@192.168.0.235&gt;
+      
+  
+Clink on the above links to understand the changes in detail.
+  ___
+
 ## Release [v8.0.6](https://github.com/sourcefuse/loopback4-audit-log/compare/v8.0.5..v8.0.6) April 21, 2025
 Welcome to the April 21, 2025 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
 
