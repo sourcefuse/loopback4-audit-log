@@ -62,7 +62,7 @@
     "@loopback/repository": "^8.0.3",
     "@loopback/rest": "^15.0.4",
     "@loopback/sequelize": "^0.8.0",
-    "@sourceloop/core": "^18.0.0",
+    "@sourceloop/core": "^20.0.0",
     "jsdom": "^24.1.1",
     "lodash": "^4.17.21",
     "tslib": "^2.6.2"
