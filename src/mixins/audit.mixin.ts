@@ -30,11 +30,8 @@ export function AuditRepositoryMixin<
   LogModel extends AuditLog = AuditLog,
   Repo extends
     | DefaultCrudRepository<LogModel, typeof AuditLog.prototype.id, {}>
-    | SequelizeCrudRepository<
-        LogModel,
-        typeof AuditLog.prototype.id,
-        {}
-      > = AuditLogRepository<LogModel>,
+    | SequelizeCrudRepository<LogModel, typeof AuditLog.prototype.id, {}> =
+    AuditLogRepository<LogModel>,
 >(
   superClass: R,
   opts: IAuditMixinOptions,
