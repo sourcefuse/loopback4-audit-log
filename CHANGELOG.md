@@ -1,3 +1,67 @@
+## Release [v9.1.0](https://github.com/sourcefuse/loopback4-audit-log/compare/v9.0.0..v9.1.0) April 21, 2026
+Welcome to the April 21, 2026 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
+
+  - [](https://github.com/sourcefuse/loopback4-audit-log/issues/) :- [chore(deps): upgrade project dependencies to latest versions ](https://github.com/sourcefuse/loopback4-audit-log/commit/4c3cbb71e6a84adba6ae464977de3b8c0ca7cf32) was commited on April 21, 2026 by [Sourav](mailto:sourav.kashyap@sourcefuse.com)
+    
+      - * chore(deps): upgrade project dependencies to latest versions
+      
+      - upgrade project dependencies to latest versions
+      
+      - GH-165
+      
+      - * chore(deps): upgraded to latest dependencies, comment resolved
+      
+      - * chore(ci-cd): Modify npm ci command to ignore scripts
+      
+      - * chore(ci-cd): Change npm install to npm ci in release workflow
+      
+      - ---------
+      
+      - Co-authored-by: Vinay Gupta &lt;vinay.gupta@sourcefuse.com&gt; Co-authored-by:
+      
+      - yeshamavani &lt;83634146+yeshamavani@users.noreply.github.com&gt;
+      
+  
+  - [](https://github.com/sourcefuse/loopback4-audit-log/issues/) :- [refactor(chore): fix audit vulnerability ](https://github.com/sourcefuse/loopback4-audit-log/commit/7f8d73f58cefeb9b73762d29b5953d613ac4f9a6) was commited on December 16, 2025 by [Piyush Singh Gaur](mailto:piyush.singh@sourcefuse.com)
+    
+      - Co-authored-by: Piyush Singh Gaur &lt;piyush.singh@Piyush-SFIN1664.local&gt;
+      
+  
+  - [](https://github.com/sourcefuse/loopback4-audit-log/issues/161) :- [chore(ci-cd): trusted publisher using git oidc ](https://github.com/sourcefuse/loopback4-audit-log/commit/d031a913dcc7d12a4e9f4a9d77255829419d0deb) was commited on October 27, 2025 by [yeshamavani](mailto:83634146+yeshamavani@users.noreply.github.com)
+    
+      - updated package json and workflow
+      
+      - GH-161
+      
+  
+  - [](https://github.com/sourcefuse/loopback4-audit-log/issues/) :- [feat(ci-cd): add trivy scan ](https://github.com/sourcefuse/loopback4-audit-log/commit/a21005a7182fcc878376fad78738da596b3cd355) was commited on October 27, 2025 by [Vaibhav Bhalla](mailto:vaibhav.bhalla@sourcefuse.com)
+    
+      - add trivy scan instead of synk
+      
+      - GH-155
+      
+      - Co-authored-by: Vaibhav  Bhalla &lt;vaibhav.bhalla@SFSupports-MacBook-Air.local&gt; 
+      
+      - Co-authored-by: yeshamavani &lt;83634146+yeshamavani@users.noreply.github.com&gt;
+      
+  
+  - [](https://github.com/sourcefuse/loopback4-audit-log/issues/157) :- [feat(ci-cd): add audit scan ](https://github.com/sourcefuse/loopback4-audit-log/commit/3a44a2d10f332c5902a3749acf98bdb1780388e0) was commited on October 27, 2025 by [Vaibhav Bhalla](mailto:vaibhav.bhalla@sourcefuse.com)
+    
+      - add audit scan
+      
+      - GH-157
+      
+  
+  - [](https://github.com/sourcefuse/loopback4-audit-log/issues/149) :- [refactor(chore): fix audit vulnerability ](https://github.com/sourcefuse/loopback4-audit-log/commit/b73678931f674fe5a6db75d96a090c9641871d15) was commited on October 27, 2025 by [Vaibhav Bhalla](mailto:vaibhav.bhalla@sourcefuse.com)
+    
+      - fix audit vulnerability
+      
+      - GH-149
+      
+  
+Clink on the above links to understand the changes in detail.
+  ___
+
 ## Release [v9.0.0](https://github.com/sourcefuse/loopback4-audit-log/compare/v8.0.6..v9.0.0) September 12, 2025
 Welcome to the September 12, 2025 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
 
