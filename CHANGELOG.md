@@ -1,3 +1,18 @@
+## Release [v10.0.0](https://github.com/sourcefuse/loopback4-audit-log/compare/v9.1.0..v10.0.0) June 16, 2026
+Welcome to the June 16, 2026 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
+
+  - [](https://github.com/sourcefuse/loopback4-audit-log/issues/168) :- [refactor(chore): remove Node js 20 support ](https://github.com/sourcefuse/loopback4-audit-log/commit/a016ec4327f18a151f226fe9605d14ebf0640cdb) was commited on June 16, 2026 by [Sourav](mailto:sourav.kashyap@sourcefuse.com)
+    
+      - remove Node js 20 support
+      
+      - BREAKING CHANGE: yes
+      
+      - GH-168
+      
+  
+Clink on the above links to understand the changes in detail.
+  ___
+
 ## Release [v9.1.0](https://github.com/sourcefuse/loopback4-audit-log/compare/v9.0.0..v9.1.0) April 21, 2026
 Welcome to the April 21, 2026 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
 
