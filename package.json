@@ -65,7 +65,7 @@
     "@loopback/core": "^7.0.10",
     "@loopback/repository": "^8.0.10",
     "@loopback/rest": "^15.0.11",
-    "@sourceloop/core": "^20.0.6"
+    "@sourceloop/core": "^21.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.8.1",
@@ -83,7 +83,7 @@
     "@semantic-release/github": "^12.0.6",
     "@semantic-release/npm": "^13.1.5",
     "@semantic-release/release-notes-generator": "^14.1.0",
-    "@sourceloop/core": "^20.0.6",
+    "@sourceloop/core": "^21.0.0",
     "@types/lodash": "^4.17.24",
     "@types/node": "^18.19.130",
     "@types/uuid": "^8.3.4",
