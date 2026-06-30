@@ -1,3 +1,19 @@
+## Release [v10.0.1](https://github.com/sourcefuse/loopback4-audit-log/compare/v10.0.0..v10.0.1) June 30, 2026
+Welcome to the June 30, 2026 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
+
+  - [](https://github.com/sourcefuse/loopback4-audit-log/issues/) :- [chore(deps): dummy commit ](https://github.com/sourcefuse/loopback4-audit-log/commit/3d47988c200e7704ef057ab454d36dbce1b926e4) was commited on June 30, 2026 by [Sourav](mailto:sourav.kashyap@sourcefuse.com)
+    
+  
+  - [](https://github.com/sourcefuse/loopback4-audit-log/issues/170) :- [refactor(deps): update sourceloop core deps ](https://github.com/sourcefuse/loopback4-audit-log/commit/75dd095d9f7a0c8fc3cd85e0ca398f863c8a6749) was commited on June 24, 2026 by [Sourav](mailto:sourav.kashyap@sourcefuse.com)
+    
+      - update sourceloop core deps
+      
+      - GH-170
+      
+  
+Clink on the above links to understand the changes in detail.
+  ___
+
 ## Release [v10.0.0](https://github.com/sourcefuse/loopback4-audit-log/compare/v9.1.0..v10.0.0) June 24, 2026
 Welcome to the June 24, 2026 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
 
