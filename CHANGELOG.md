@@ -1,3 +1,50 @@
+## Release [v10.0.2](https://github.com/sourcefuse/loopback4-audit-log/compare/v10.0.1..v10.0.2) August 16, 2026
+Welcome to the August 16, 2026 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
+
+  - [](https://github.com/sourcefuse/loopback4-audit-log/issues/173) :- [fix(deps): move loopback and core packages from peer to direct deps ](https://github.com/sourcefuse/loopback4-audit-log/commit/e47b0f870cd955a197cc28d9c080320caf4c0081) was commited on August 16, 2026 by [Piyush Singh Gaur](mailto:piyush.singh@sourcefuse.com)
+    
+      - * fix(deps): move loopback and core packages from peer to direct deps
+      
+      - - remove the peerDependencies block and declare @loopback/boot,
+      
+      -  @loopback/core, @loopback/repository, @loopback/rest and
+      
+      -  @sourceloop/core as direct dependencies instead
+      
+      - - the peer on @sourceloop/core could not be resolved in consumer
+      
+      -  monorepos where @sourceloop/core is a local workspace package, which
+      
+      -  made npm error with ERESOLVE and blocked npm audit fix from running
+      
+      - - the peer was introduced in 9.1.0; releases up to 9.0.0 declared no
+      
+      -  peerDependencies at all, which is why the failure appeared only after
+      
+      -  consumers moved to ^9.1.0
+      
+      - GH-173
+      
+      - * fix(deps): override undici to clear trivy reported vulnerability
+      
+      - - add an undici ^6.27.0 override so the transitive copy resolves to a
+      
+      -  patched release instead of the vulnerable one trivy flagged
+      
+      - - regenerate package-lock.json to apply the override
+      
+      - - verified locally with the same command and config ci uses,
+      
+      -  trivy fs . --config trivy.yml, which now reports no fixable
+      
+      -  high or critical findings
+      
+      - GH-173
+      
+  
+Clink on the above links to understand the changes in detail.
+  ___
+
 ## Release [v10.0.1](https://github.com/sourcefuse/loopback4-audit-log/compare/v10.0.0..v10.0.1) June 30, 2026
 Welcome to the June 30, 2026 release of loopback4-audit-log. There are many updates in this version that we hope you will like, the key highlights include:
 
