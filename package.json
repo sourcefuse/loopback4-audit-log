@@ -57,27 +57,22 @@
     "!*/__tests__"
   ],
   "dependencies": {
-    "lodash": "^4.18.1",
-    "tslib": "^2.8.1"
-  },
-  "peerDependencies": {
-    "@loopback/boot": "^8.0.11",
-    "@loopback/core": "^7.0.10",
-    "@loopback/repository": "^8.0.10",
-    "@loopback/rest": "^15.0.11",
-    "@sourceloop/core": "^21.0.0"
+    "@loopback/boot": "^8.0.4",
+    "@loopback/core": "^7.0.3",
+    "@loopback/repository": "^8.0.3",
+    "@loopback/rest": "^15.0.4",
+    "@loopback/sequelize": "^0.8.0",
+    "@sourceloop/core": "^21.0.0",
+    "jsdom": "^24.1.1",
+    "lodash": "^4.17.21",
+    "tslib": "^2.6.2"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.8.1",
-    "@commitlint/config-conventional": "^17.8.1",
-    "@loopback/boot": "^8.0.12",
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
     "@loopback/build": "^12.0.11",
-    "@loopback/core": "^7.0.11",
     "@loopback/eslint-config": "^16.0.1",
-    "@loopback/repository": "^8.0.11",
-    "@loopback/rest": "^15.0.12",
-    "@loopback/sequelize": "^0.8.8",
-    "@loopback/testlab": "^8.0.11",
+    "@loopback/testlab": "^8.0.3",
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^12.0.6",
@@ -111,7 +106,8 @@
     "git-release-notes": {
       "ejs": "^3.1.8",
       "yargs": "^17.6.2"
-    }
+    },
+    "undici": "^6.27.0"
   },
   "config": {
     "commitizen": {
